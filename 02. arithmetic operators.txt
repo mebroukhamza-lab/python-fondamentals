@@ -1,0 +1,112 @@
+=========================
+PYTHON ARITHMETIC OPERATORS
+=========================
+
+Arithmetic operators are used to do math.
+
++    Addition
+-    Subtraction
+*    Multiplication
+/    Division (ALWAYS gives a float)
+//   Floor division (throws away the decimal part)
+%    Modulus (the remainder)
+**   Power
+
+-------------------------
+
+Example
+
+a = 10
+b = 3
+
+print(a + b)     # 13
+print(a - b)     # 7
+print(a * b)     # 30
+print(a / b)     # 3.3333333333333335
+print(a // b)    # 3
+print(a % b)     # 1
+print(a ** b)    # 1000   (10 x 10 x 10)
+
+-------------------------
+
+/ ALWAYS GIVES A FLOAT
+
+print(10 / 2)    # 5.0   (not 5)
+print(10 // 2)   # 5
+
+-------------------------
+
+MODULUS % (very useful)
+
+Even or odd:
+
+print(10 % 2)    # 0  -> even
+print(7 % 2)     # 1  -> odd
+
+Divisible by 5?
+
+print(25 % 5)    # 0  -> yes
+
+-------------------------
+
+SHORTCUT OPERATORS
+
+x = 10
+
+x += 5     # x = x + 5   -> 15
+x -= 3     # x = x - 3   -> 12
+x *= 2     # x = x * 2   -> 24
+x /= 4     # x = x / 4   -> 6.0
+x //= 2    # x = x // 2  -> 3.0
+x %= 2     # x = x % 2   -> 1.0
+x **= 2    # x = x ** 2  -> 1.0
+
+NOTE: Python has NO ++ and NO --
+Use  x += 1  and  x -= 1
+
+-------------------------
+
+ORDER OF OPERATIONS
+
+1) ( )
+2) **
+3) *  /  //  %
+4) +  -
+
+print(2 + 3 * 4)      # 14
+print((2 + 3) * 4)    # 20
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+a = 17
+b = 5
+
+print("Sum:", a + b)
+print("Difference:", a - b)
+print("Product:", a * b)
+print("Division:", a / b)
+print("Floor division:", a // b)
+print("Remainder:", a % b)
+print("Power:", a ** 2)
+
+Output:
+Sum: 22
+Difference: 12
+Product: 85
+Division: 3.4
+Floor division: 3
+Remainder: 2
+Power: 289
+
+=========================
+REMEMBER
+=========================
+
+/    -> normal division (float)
+//   -> division without decimals
+%    -> remainder
+**   -> power
++=   -> add and save
+No ++ / -- in Python

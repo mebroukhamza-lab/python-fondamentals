@@ -1,0 +1,151 @@
+=========================
+MOST USED PYTHON VARIABLES
+=========================
+
+A variable is a BOX with a NAME. Inside the box you put a value.
+
+In Python you do NOT write the type (no "int", no "String").
+Python understands the type alone.
+
+1) int (whole numbers)
+
+age = 20
+
+print(age)
+print("Age:", age)
+
+-------------------------
+
+2) float (decimal numbers)
+
+price = 19.99
+
+print(price)
+print("Price:", price)
+
+-------------------------
+
+3) str (text)
+
+name = "Hamza"
+
+print(name)
+print("Name:", name)
+
+(You can use "double" or 'single' quotes. Both work.)
+
+-------------------------
+
+4) bool (True / False)
+
+is_student = True
+
+print(is_student)
+print("Student:", is_student)
+
+(Careful: True and False start with a CAPITAL letter.)
+
+-------------------------
+
+5) None (nothing / empty)
+
+result = None
+
+print(result)
+
+-------------------------
+
+CHECK THE TYPE
+
+x = 5
+print(type(x))        # <class 'int'>
+
+y = "Hello"
+print(type(y))        # <class 'str'>
+
+-------------------------
+
+CHANGE A VARIABLE
+
+score = 10
+score = 20            # the box now contains 20
+print(score)
+
+Output:
+20
+
+-------------------------
+
+MANY VARIABLES IN ONE LINE
+
+a, b, c = 1, 2, 3
+
+x = y = 0             # both are 0
+
+-------------------------
+
+SWAP TWO VARIABLES
+
+a = 1
+b = 2
+
+a, b = b, a
+
+print(a, b)
+
+Output:
+2 1
+
+-------------------------
+
+CONSTANT
+
+Python has no real constants.
+By habit we write the name in CAPITAL LETTERS.
+
+PI = 3.14
+MAX_SPEED = 120
+
+-------------------------
+
+USER INPUT
+
+name = input("Your name: ")               # text
+age = int(input("Your age: "))            # integer
+price = float(input("Price: "))           # decimal
+
+-------------------------
+
+PRINTING
+
+print("Hello")                # print + new line
+print("Hello", end="")        # print only (no new line)
+
+name = "Hamza"
+age = 20
+
+print("Name:", name)
+print("Age:", age)
+
+-------------------------
+
+VARIABLE NAME RULES
+
+Good:    age   my_name   price2   _hidden
+Bad:     2price   my-name   my name   class
+
+- No spaces
+- Cannot start with a number
+- Use lowercase_with_underscores (snake_case)
+
+-------------------------
+
+REMEMBER
+
+int    -> 5, 10, 100
+float  -> 3.14, 19.99
+str    -> "Hello"
+bool   -> True / False
+None   -> nothing
+
+type(x)  -> shows the type

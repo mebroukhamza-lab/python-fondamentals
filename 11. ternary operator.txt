@@ -1,0 +1,94 @@
+=========================
+PYTHON TERNARY OPERATOR
+=========================
+
+A ternary is a SHORT if-else written in ONE line.
+
+Syntax:
+
+value_if_true if condition else value_if_false
+
+(In Java it is  condition ? a : b.  In Python it reads like English.)
+
+-------------------------
+
+Normal way (4 lines)
+
+age = 20
+
+if age >= 18:
+    status = "Adult"
+else:
+    status = "Minor"
+
+-------------------------
+
+Ternary way (1 line)
+
+age = 20
+
+status = "Adult" if age >= 18 else "Minor"
+
+print(status)
+
+Output:
+Adult
+
+-------------------------
+
+MORE EXAMPLES
+
+Even or odd:
+
+n = 7
+result = "Even" if n % 2 == 0 else "Odd"
+print(result)          # Odd
+
+Biggest number:
+
+a = 5
+b = 9
+biggest = a if a > b else b
+print(biggest)         # 9
+
+Inside print:
+
+print("Pass" if 12 >= 10 else "Fail")     # Pass
+
+-------------------------
+
+CHAINED TERNARY (avoid if it is hard to read)
+
+score = 85
+
+grade = "A" if score >= 90 else "B" if score >= 80 else "C"
+
+print(grade)           # B
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+number = int(input("Enter a number: "))
+
+sign = "Positive" if number > 0 else "Negative or zero"
+
+print(sign)
+
+Output:
+Enter a number: 5
+Positive
+
+=========================
+TEMPLATE
+=========================
+
+variable = value1 if condition else value2
+
+=========================
+REMEMBER
+=========================
+
+Order:  VALUE  if  CONDITION  else  VALUE
+Use it for short and simple decisions.
+For long decisions use a normal if.

@@ -1,0 +1,140 @@
+=========================
+PYTHON TYPE HINTS & GENERICS
+=========================
+
+Python does not force types, but you can WRITE them
+to help you and your editor understand the code.
+
+These are called TYPE HINTS.
+They are only hints: Python does not stop the program
+if you break them.
+
+-------------------------
+
+VARIABLES
+
+name: str = "Hamza"
+age: int = 20
+price: float = 19.99
+active: bool = True
+
+-------------------------
+
+FUNCTIONS
+
+def add(a: int, b: int) -> int:
+    return a + b
+
+print(add(2, 3))       # 5
+
+parameter type  ->  a: int
+return type     ->  -> int
+
+def greet(name: str) -> None:       # None = returns nothing
+    print("Hello", name)
+
+-------------------------
+
+DEFAULT VALUES
+
+def power(base: int, exp: int = 2) -> int:
+    return base ** exp
+
+=========================
+COLLECTIONS
+=========================
+
+numbers: list[int] = [1, 2, 3]
+names: list[str] = ["Ali", "Sara"]
+scores: dict[str, int] = {"Ali": 15, "Sara": 18}
+point: tuple[int, int] = (10, 20)
+unique: set[str] = {"a", "b"}
+
+-------------------------
+
+OPTIONAL (a value OR None)
+
+def find(name: str) -> str | None:
+    if name == "Hamza":
+        return "Found"
+    return None
+
+(Older Python: from typing import Optional -> Optional[str])
+
+-------------------------
+
+SEVERAL TYPES
+
+def show(value: int | float) -> None:
+    print(value)
+
+=========================
+GENERICS  (one class, any type)
+=========================
+
+A generic works with ANY type but stays organized.
+In Java:  Box<T>.   In Python we use TypeVar and Generic.
+
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Box(Generic[T]):
+
+    def __init__(self, item: T):
+        self.item = item
+
+    def get(self) -> T:
+        return self.item
+
+int_box = Box(5)
+text_box = Box("Hello")
+
+print(int_box.get())     # 5
+print(text_box.get())    # Hello
+
+-------------------------
+
+GENERIC FUNCTION
+
+def first(items: list[T]) -> T:
+    return items[0]
+
+print(first([1, 2, 3]))         # 1
+print(first(["a", "b"]))        # a
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+def average(numbers: list[float]) -> float:
+    return sum(numbers) / len(numbers)
+
+def describe(name: str, age: int) -> str:
+    return f"{name} is {age} years old"
+
+print(average([10, 20, 30]))
+print(describe("Hamza", 20))
+
+Output:
+20.0
+Hamza is 20 years old
+
+=========================
+CHECK YOUR HINTS
+=========================
+
+Python ignores hints when running.
+Tools like  mypy  or your editor (VS Code, PyCharm)
+warn you about mistakes.
+
+=========================
+REMEMBER
+=========================
+
+name: str          -> variable hint
+-> int             -> return type
+list[int]          -> list of ints
+str | None         -> text or nothing
+TypeVar + Generic  -> generic classes
+Hints are optional but make code clearer

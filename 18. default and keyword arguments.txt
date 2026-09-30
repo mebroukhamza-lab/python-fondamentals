@@ -1,0 +1,114 @@
+=========================
+PYTHON DEFAULT & KEYWORD ARGUMENTS
+=========================
+
+In Java you can write many methods with the same name (overloading).
+Python does NOT do that.
+
+In Python ONE function can work in many ways
+thanks to DEFAULT values and KEYWORD arguments.
+
+=========================
+DEFAULT ARGUMENTS
+=========================
+
+If the caller gives no value, Python uses the default.
+
+def greet(name="friend"):
+    print("Hello", name)
+
+greet()              # Hello friend
+greet("Hamza")       # Hello Hamza
+
+-------------------------
+
+Several defaults
+
+def power(base, exponent=2):
+    return base ** exponent
+
+print(power(5))        # 25   (exponent = 2)
+print(power(5, 3))     # 125
+
+RULE: parameters WITH a default go at the END.
+
+def wrong(a=1, b):     # ERROR
+def right(b, a=1):     # OK
+
+=========================
+KEYWORD ARGUMENTS
+=========================
+
+You can name the arguments when you call.
+The order no longer matters.
+
+def info(name, age, city):
+    print(name, age, city)
+
+info("Hamza", 20, "Casablanca")
+info(age=20, city="Casablanca", name="Hamza")
+
+-------------------------
+
+Mix both
+
+def order(item, quantity=1, delivery=False):
+    print(item, quantity, delivery)
+
+order("Pizza")
+order("Pizza", 3)
+order("Pizza", delivery=True)
+order("Pizza", quantity=2, delivery=True)
+
+=========================
+DIFFERENT TYPES = SAME FUNCTION
+=========================
+
+Python functions accept any type, so no overloading is needed.
+
+def add(a, b):
+    return a + b
+
+print(add(2, 3))          # 5        (numbers)
+print(add(1.5, 2.5))      # 4.0      (decimals)
+print(add("Hi ", "you"))  # Hi you   (text)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+def area(width, height=None):
+    if height is None:
+        return width * width      # square
+    return width * height         # rectangle
+
+print(area(4))
+print(area(4, 5))
+
+Output:
+16
+20
+
+=========================
+DANGER (do not do this)
+=========================
+
+def add_item(item, box=[]):     # BAD: the list is shared!
+
+Do this instead:
+
+def add_item(item, box=None):
+    if box is None:
+        box = []
+    box.append(item)
+    return box
+
+=========================
+REMEMBER
+=========================
+
+No overloading in Python
+Default value      ->  def f(x=10)
+Keyword argument   ->  f(x=5)
+Defaults go LAST
+Never use [] or {} as a default value

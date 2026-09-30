@@ -1,0 +1,123 @@
+=========================
+PYTHON GETTERS AND SETTERS (@property)
+=========================
+
+Problem: anybody can put a wrong value.
+
+class Person:
+    def __init__(self, age):
+        self.age = age
+
+p = Person(20)
+p.age = -500          # nothing stops this!
+
+Solution: control the access with @property.
+
+-------------------------
+
+STEP 1: hide the real value (start the name with _ )
+
+_age = "private by habit, please do not touch it directly"
+
+-------------------------
+
+STEP 2: getter (READ)  ->  @property
+
+STEP 3: setter (WRITE) ->  @name.setter
+
+class Person:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age             # uses the setter below
+
+    @property
+    def age(self):                 # getter
+        return self._age
+
+    @age.setter
+    def age(self, value):          # setter
+        if value < 0:
+            print("Age cannot be negative")
+        else:
+            self._age = value
+
+-------------------------
+
+Use it like a normal attribute (no parentheses!):
+
+p = Person("Hamza", 20)
+
+print(p.age)        # 20        (calls the getter)
+
+p.age = 25          # calls the setter
+print(p.age)        # 25
+
+p.age = -5          # Age cannot be negative
+print(p.age)        # 25  (unchanged)
+
+=========================
+READ-ONLY ATTRIBUTE
+=========================
+
+Only a getter, no setter:
+
+class Circle:
+
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+c = Circle(2)
+
+print(c.area)       # 12.56
+c.area = 5          # ERROR: cannot set
+
+=========================
+COMPLETE EXAMPLE (Bank account)
+=========================
+
+class Account:
+
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self._balance = balance
+
+    @property
+    def balance(self):
+        return self._balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+
+    def withdraw(self, amount):
+        if 0 < amount <= self._balance:
+            self._balance -= amount
+        else:
+            print("Not enough money")
+
+acc = Account("Hamza", 100)
+
+acc.deposit(50)
+acc.withdraw(30)
+acc.withdraw(500)
+
+print(acc.balance)
+
+Output:
+Not enough money
+120
+
+=========================
+REMEMBER
+=========================
+
+_name          -> "private" by habit (one underscore)
+@property      -> getter (read)
+@name.setter   -> setter (write + checks)
+Use them like normal attributes:  p.age  and  p.age = 5
+Python does not force privacy, it is an agreement between programmers

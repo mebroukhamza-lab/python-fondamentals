@@ -1,0 +1,123 @@
+=========================
+PYTHON MATCH CASE
+=========================
+
+match-case is Python's "switch".
+It compares ONE value with many possible cases.
+
+Needs Python 3.10 or newer.
+
+-------------------------
+
+Basic example
+
+day = 3
+
+match day:
+    case 1:
+        print("Monday")
+    case 2:
+        print("Tuesday")
+    case 3:
+        print("Wednesday")
+    case _:
+        print("Other day")
+
+Output:
+Wednesday
+
+case _  is the DEFAULT (used when nothing else matches).
+
+(No break needed! Python stops after the first match.)
+
+-------------------------
+
+TEXT
+
+color = "red"
+
+match color:
+    case "red":
+        print("Stop")
+    case "green":
+        print("Go")
+    case "yellow":
+        print("Wait")
+    case _:
+        print("Unknown")
+
+-------------------------
+
+SEVERAL VALUES IN ONE CASE  ( | means OR )
+
+day = "Saturday"
+
+match day:
+    case "Saturday" | "Sunday":
+        print("Weekend")
+    case _:
+        print("Weekday")
+
+-------------------------
+
+CASE WITH A CONDITION
+
+score = 85
+
+match score:
+    case n if n >= 90:
+        print("A")
+    case n if n >= 80:
+        print("B")
+    case _:
+        print("C or lower")
+
+Output:
+B
+
+=========================
+COMPLETE EXAMPLE (Calculator)
+=========================
+
+a = 10
+b = 5
+op = input("Operator (+ - * /): ")
+
+match op:
+    case "+":
+        print(a + b)
+    case "-":
+        print(a - b)
+    case "*":
+        print(a * b)
+    case "/":
+        print(a / b)
+    case _:
+        print("Invalid operator")
+
+Output (example):
+Operator (+ - * /): *
+50
+
+=========================
+TEMPLATE
+=========================
+
+match variable:
+    case value1:
+        # code
+    case value2 | value3:
+        # code
+    case _:
+        # default
+
+=========================
+REMEMBER
+=========================
+
+match      -> the value to check
+case       -> one possibility
+case _     -> default (else)
+|          -> OR between values
+No break needed
+Older Python? Use  if / elif / else  instead.

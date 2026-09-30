@@ -1,0 +1,126 @@
+=========================
+PYTHON CLASS VARIABLES & STATIC METHODS
+=========================
+
+Normal attributes belong to ONE object (self.name).
+Class variables belong to the WHOLE CLASS
+and are SHARED by all objects.
+
+=========================
+CLASS VARIABLE
+=========================
+
+class Student:
+
+    school = "Python Academy"     # shared by everyone
+    count = 0                     # shared counter
+
+    def __init__(self, name):
+        self.name = name          # different for each object
+        Student.count += 1
+
+s1 = Student("Ali")
+s2 = Student("Sara")
+
+print(s1.school)          # Python Academy
+print(Student.school)     # Python Academy
+print(Student.count)      # 2
+
+Use  ClassName.variable  to read and change it.
+
+-------------------------
+
+Change it for everybody
+
+Student.school = "Code School"
+
+print(s1.school)          # Code School
+print(s2.school)          # Code School
+
+=========================
+@staticmethod
+=========================
+
+A static method is a function INSIDE a class.
+It does NOT use self and does NOT need an object.
+
+class MathTools:
+
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+    @staticmethod
+    def is_even(n):
+        return n % 2 == 0
+
+print(MathTools.add(2, 3))       # 5
+print(MathTools.is_even(8))      # True
+
+=========================
+@classmethod
+=========================
+
+A class method receives the class (cls).
+It can use the class variables.
+
+class Student:
+
+    count = 0
+
+    def __init__(self, name):
+        self.name = name
+        Student.count += 1
+
+    @classmethod
+    def total(cls):
+        return cls.count
+
+Student("Ali")
+Student("Sara")
+
+print(Student.total())    # 2
+
+=========================
+THE 3 KINDS OF METHODS
+=========================
+
+normal method    -> def f(self)   -> uses ONE object
+class method     -> @classmethod def f(cls)  -> uses the CLASS
+static method    -> @staticmethod def f()    -> uses neither
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Circle:
+
+    PI = 3.14159
+
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return Circle.PI * self.radius ** 2
+
+    @staticmethod
+    def diameter(radius):
+        return radius * 2
+
+c = Circle(5)
+
+print(round(c.area(), 2))
+print(Circle.diameter(5))
+
+Output:
+78.54
+10
+
+=========================
+REMEMBER
+=========================
+
+Class variable   -> written in the class, shared by all
+Access           -> ClassName.variable
+@staticmethod    -> no self, no cls
+@classmethod     -> receives cls

@@ -1,0 +1,142 @@
+=========================
+PYTHON ABSTRACTION
+=========================
+
+Abstraction = hide the details, show only what is important.
+
+Example: to drive a car you use the pedals and the wheel.
+You do not need to know how the engine works inside.
+
+In Python we use an ABSTRACT CLASS:
+- It is a "template" for other classes.
+- You CANNOT create an object from it.
+- It forces the children to write certain methods.
+
+We need the abc module:
+
+from abc import ABC, abstractmethod
+
+=========================
+EXAMPLE
+=========================
+
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass                  # no code here, children must write it
+
+-------------------------
+
+You can NOT create it:
+
+s = Shape()       # ERROR: can't instantiate abstract class
+
+-------------------------
+
+Children MUST write area():
+
+class Rectangle(Shape):
+
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
+
+    def area(self):
+        return self.w * self.h
+
+class Circle(Shape):
+
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return 3.14 * self.r ** 2
+
+r = Rectangle(4, 5)
+c = Circle(3)
+
+print(r.area())
+print(c.area())
+
+Output:
+20
+28.26
+
+-------------------------
+
+If a child forgets the method:
+
+class Triangle(Shape):
+    pass
+
+t = Triangle()    # ERROR: must implement area()
+
+=========================
+ABSTRACT CLASS CAN ALSO HAVE NORMAL METHODS
+=========================
+
+class Animal(ABC):
+
+    def __init__(self, name):
+        self.name = name
+
+    @abstractmethod
+    def speak(self):
+        pass
+
+    def sleep(self):                       # normal method
+        print(self.name, "is sleeping")
+
+class Dog(Animal):
+
+    def speak(self):
+        print(self.name, "says Woof!")
+
+d = Dog("Rex")
+d.speak()
+d.sleep()
+
+Output:
+Rex says Woof!
+Rex is sleeping
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+from abc import ABC, abstractmethod
+
+class Payment(ABC):
+
+    @abstractmethod
+    def pay(self, amount):
+        pass
+
+class CreditCard(Payment):
+
+    def pay(self, amount):
+        print(f"Paid {amount}$ with credit card")
+
+class PayPal(Payment):
+
+    def pay(self, amount):
+        print(f"Paid {amount}$ with PayPal")
+
+for method in [CreditCard(), PayPal()]:
+    method.pay(50)
+
+Output:
+Paid 50$ with credit card
+Paid 50$ with PayPal
+
+=========================
+REMEMBER
+=========================
+
+class Name(ABC)      -> abstract class
+@abstractmethod      -> children MUST write this method
+Cannot create an object from an abstract class
+Use it as a plan for your classes

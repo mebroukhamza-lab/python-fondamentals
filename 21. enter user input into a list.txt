@@ -1,0 +1,113 @@
+=========================
+PYTHON: USER INPUT INTO A LIST
+=========================
+
+Goal: ask the user for values and store them in a list.
+
+-------------------------
+
+METHOD 1: ask a fixed number of times
+
+names = []
+
+for i in range(3):
+    name = input("Enter a name: ")
+    names.append(name)
+
+print(names)
+
+Output:
+Enter a name: Ali
+Enter a name: Sara
+Enter a name: Hamza
+['Ali', 'Sara', 'Hamza']
+
+-------------------------
+
+METHOD 2: ask how many first
+
+n = int(input("How many numbers? "))
+
+numbers = []
+
+for i in range(n):
+    x = int(input(f"Number {i + 1}: "))
+    numbers.append(x)
+
+print(numbers)
+
+-------------------------
+
+METHOD 3: everything in ONE line
+
+numbers = list(map(int, input("Numbers: ").split()))
+
+print(numbers)
+
+Input:
+4 8 15
+
+Output:
+[4, 8, 15]
+
+-------------------------
+
+METHOD 4: stop with a special word
+
+items = []
+
+while True:
+    item = input("Item (or 'done'): ")
+
+    if item == "done":
+        break
+
+    items.append(item)
+
+print(items)
+
+=========================
+COMPLETE EXAMPLE (Average of grades)
+=========================
+
+n = int(input("How many grades? "))
+
+grades = []
+
+for i in range(n):
+    g = float(input(f"Grade {i + 1}: "))
+    grades.append(g)
+
+average = sum(grades) / len(grades)
+
+print("Grades:", grades)
+print("Average:", round(average, 2))
+print("Highest:", max(grades))
+
+Output (example):
+How many grades? 3
+Grade 1: 12
+Grade 2: 15
+Grade 3: 18
+Grades: [12.0, 15.0, 18.0]
+Average: 15.0
+Highest: 18.0
+
+=========================
+TEMPLATE
+=========================
+
+my_list = []
+
+for i in range(n):
+    value = input("Enter: ")
+    my_list.append(value)
+
+=========================
+REMEMBER
+=========================
+
+Start with an empty list  []
+append()  -> add each value
+Convert with int() / float() for numbers
+.split() -> cut a line into pieces

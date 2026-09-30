@@ -1,0 +1,127 @@
+=========================
+PYTHON DUCK TYPING & RUNTIME POLYMORPHISM
+=========================
+
+Runtime polymorphism = Python decides WHICH method to call
+WHILE the program is running, by looking at the real object.
+
+-------------------------
+
+Example
+
+class Animal:
+    def speak(self):
+        print("Some sound")
+
+class Dog(Animal):
+    def speak(self):
+        print("Woof!")
+
+class Cat(Animal):
+    def speak(self):
+        print("Meow!")
+
+def make_it_speak(animal):
+    animal.speak()
+
+make_it_speak(Dog())
+make_it_speak(Cat())
+make_it_speak(Animal())
+
+Output:
+Woof!
+Meow!
+Some sound
+
+The function does not care about the type.
+It only cares that the object HAS a speak() method.
+
+=========================
+DUCK TYPING
+=========================
+
+"If it walks like a duck and quacks like a duck,
+ then it is a duck."
+
+Python does not check the class.
+It only checks: does the object have the method?
+
+class Duck:
+    def quack(self):
+        print("Quack!")
+
+class Robot:
+    def quack(self):
+        print("Beep-quack!")
+
+class Dog:
+    def bark(self):
+        print("Woof!")
+
+def test(thing):
+    thing.quack()
+
+test(Duck())        # Quack!
+test(Robot())       # Beep-quack!
+test(Dog())         # ERROR: Dog has no quack()
+
+Duck and Robot have NO parent in common,
+but both work. That is duck typing.
+
+-------------------------
+
+CHECK BEFORE CALLING
+
+if hasattr(thing, "quack"):
+    thing.quack()
+else:
+    print("Cannot quack")
+
+-------------------------
+
+CHECK THE TYPE (when you really need it)
+
+a = Dog()
+
+print(isinstance(a, Dog))       # True
+print(isinstance(a, Animal))    # True
+print(type(a).__name__)         # Dog
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Shape:
+    def area(self):
+        return 0
+
+class Square(Shape):
+    def __init__(self, s):
+        self.s = s
+    def area(self):
+        return self.s ** 2
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+    def area(self):
+        return 3.14 * self.r ** 2
+
+def show_area(shape):
+    print(f"{type(shape).__name__}: {shape.area()}")
+
+for s in [Square(4), Circle(1)]:
+    show_area(s)
+
+Output:
+Square: 16
+Circle: 3.14
+
+=========================
+REMEMBER
+=========================
+
+Runtime = decided when the program runs
+Duck typing = only the method matters, not the class
+hasattr(obj, "name")  -> does it have this attribute / method?
+isinstance(obj, Class) -> is it of this type?

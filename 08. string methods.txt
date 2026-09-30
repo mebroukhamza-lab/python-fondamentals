@@ -1,0 +1,142 @@
+=========================
+PYTHON STRING METHODS
+=========================
+
+A string is text.
+A method is a tool that works on it:  text.method()
+
+IMPORTANT: strings can NOT be changed.
+Every method gives you a NEW string.
+
+text = "Hello World"
+
+-------------------------
+
+LENGTH
+
+print(len(text))              # 11
+
+-------------------------
+
+UPPER / LOWER / TITLE
+
+print(text.upper())           # HELLO WORLD
+print(text.lower())           # hello world
+print("hamza ali".title())    # Hamza Ali
+print(text.capitalize())      # Hello world
+
+-------------------------
+
+REMOVE SPACES
+
+s = "   hi   "
+
+print(s.strip())              # "hi"
+print(s.lstrip())             # "hi   "
+print(s.rstrip())             # "   hi"
+
+-------------------------
+
+REPLACE
+
+print(text.replace("World", "Python"))    # Hello Python
+
+-------------------------
+
+FIND / COUNT
+
+print(text.find("World"))     # 6   (position)
+print(text.find("xyz"))       # -1  (not found)
+print(text.count("l"))        # 3
+
+-------------------------
+
+CHECK
+
+print(text.startswith("Hello"))    # True
+print(text.endswith("d"))          # True
+print("123".isdigit())             # True
+print("abc".isalpha())             # True
+print("Hello" in text)             # True
+
+-------------------------
+
+SPLIT / JOIN
+
+words = "a,b,c".split(",")
+print(words)                       # ['a', 'b', 'c']
+
+print("-".join(words))             # a-b-c
+
+-------------------------
+
+INDEX (each letter has a number, starting at 0)
+
+text = "Python"
+
+print(text[0])      # P
+print(text[1])      # y
+print(text[-1])     # n   (last letter)
+
+-------------------------
+
+SLICING [start:end]  (end is NOT included)
+
+print(text[0:2])    # Py
+print(text[2:])     # thon
+print(text[:3])     # Pyt
+print(text[::-1])   # nohtyP   (reversed!)
+
+-------------------------
+
+LOOP OVER LETTERS
+
+for letter in "Hey":
+    print(letter)
+
+Output:
+H
+e
+y
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+name = "  hamza ali  "
+
+clean = name.strip().title()
+
+print(clean)
+print(len(clean))
+print(clean.upper())
+print(clean[::-1])
+
+Output:
+Hamza Ali
+9
+HAMZA ALI
+ilA azmaH
+
+=========================
+MOST USED
+=========================
+
+len(s)              -> length
+s.upper()           -> CAPITAL letters
+s.lower()           -> small letters
+s.strip()           -> remove spaces
+s.replace(a, b)     -> replace a with b
+s.split()           -> text to list
+"-".join(list)      -> list to text
+s.find(x)           -> position (-1 if none)
+s.startswith(x)     -> True / False
+
+=========================
+REMEMBER
+=========================
+
+Index starts at 0
+s[-1] is the last letter
+s[::-1] reverses the text
+Strings never change, methods return a new one

@@ -1,0 +1,121 @@
+=========================
+PYTHON LAMBDA (anonymous functions)
+=========================
+
+A lambda is a SMALL function without a name,
+written in ONE line.
+
+Syntax:
+
+lambda parameters: expression
+
+(The result is returned automatically. No return needed.)
+
+-------------------------
+
+Normal function:
+
+def double(x):
+    return x * 2
+
+Lambda:
+
+double = lambda x: x * 2
+
+print(double(5))       # 10
+
+-------------------------
+
+TWO PARAMETERS
+
+add = lambda a, b: a + b
+
+print(add(3, 4))       # 7
+
+-------------------------
+
+NO PARAMETER
+
+hello = lambda: "Hello!"
+
+print(hello())         # Hello!
+
+-------------------------
+
+WITH A CONDITION
+
+is_even = lambda n: n % 2 == 0
+
+print(is_even(4))      # True
+
+=========================
+WHERE LAMBDA IS REALLY USEFUL
+=========================
+
+1) sorted() / sort() / max() / min()   ->  key
+
+students = [("Ali", 15), ("Sara", 18), ("Hamza", 12)]
+
+by_grade = sorted(students, key=lambda s: s[1])
+
+print(by_grade)
+
+Output:
+[('Hamza', 12), ('Ali', 15), ('Sara', 18)]
+
+best = max(students, key=lambda s: s[1])
+
+print(best)            # ('Sara', 18)
+
+-------------------------
+
+2) map()  ->  do something to EVERY item
+
+numbers = [1, 2, 3, 4]
+
+squares = list(map(lambda x: x ** 2, numbers))
+
+print(squares)         # [1, 4, 9, 16]
+
+-------------------------
+
+3) filter()  ->  keep only some items
+
+numbers = [1, 2, 3, 4, 5, 6]
+
+even = list(filter(lambda x: x % 2 == 0, numbers))
+
+print(even)            # [2, 4, 6]
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+words = ["banana", "kiwi", "apple", "fig"]
+
+words.sort(key=lambda w: len(w))
+
+print(words)
+
+Output:
+['fig', 'kiwi', 'apple', 'banana']
+
+=========================
+TIP
+=========================
+
+Lambda is only for SHORT things.
+If it is long or hard to read, use def.
+
+Often a list comprehension is easier:
+
+squares = [x ** 2 for x in numbers]
+even = [x for x in numbers if x % 2 == 0]
+
+=========================
+REMEMBER
+=========================
+
+lambda x: x * 2       -> takes x, returns x * 2
+Used with sorted, map, filter, max, min
+One expression only, no if/for blocks

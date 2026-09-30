@@ -1,0 +1,113 @@
+=========================
+PYTHON __str__ METHOD
+=========================
+
+If you print an object, Python shows something ugly:
+
+class Dog:
+
+    def __init__(self, name):
+        self.name = name
+
+d = Dog("Rex")
+
+print(d)
+
+Output:
+<__main__.Dog object at 0x000001A2B3C4D5E0>
+
+-------------------------
+
+FIX: write the __str__ method
+
+class Dog:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"Dog(name={self.name}, age={self.age})"
+
+d = Dog("Rex", 3)
+
+print(d)
+
+Output:
+Dog(name=Rex, age=3)
+
+__str__ MUST return a text (str). It must not print.
+
+-------------------------
+
+Also works with str() and f-strings
+
+text = str(d)
+print(f"My pet: {d}")
+
+Output:
+My pet: Dog(name=Rex, age=3)
+
+-------------------------
+
+__repr__  (for programmers)
+
+__str__   -> nice text for users
+__repr__  -> exact text for developers (also shown inside lists)
+
+class Point:
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f"Point({self.x}, {self.y})"
+
+points = [Point(1, 2), Point(3, 4)]
+
+print(points)
+
+Output:
+[Point(1, 2), Point(3, 4)]
+
+(Tip: if you only write __repr__, print() will use it too.)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Car:
+
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+
+    def __str__(self):
+        return f"{self.brand} ({self.year})"
+
+c1 = Car("Toyota", 2020)
+c2 = Car("BMW", 2023)
+
+print(c1)
+print(c2)
+
+Output:
+Toyota (2020)
+BMW (2023)
+
+=========================
+TEMPLATE
+=========================
+
+def __str__(self):
+    return f"...{self.attribute}..."
+
+=========================
+REMEMBER
+=========================
+
+__str__   -> what print(object) shows
+return    -> never print inside __str__
+__repr__  -> developer version
+Without __str__ you see <__main__.Dog object at ...>

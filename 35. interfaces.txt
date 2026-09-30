@@ -1,0 +1,122 @@
+=========================
+PYTHON INTERFACES
+=========================
+
+An interface = a list of methods that a class PROMISES to have.
+It says WHAT to do, not HOW.
+
+Python has no "interface" keyword.
+We use an abstract class that has ONLY abstract methods.
+
+=========================
+EXAMPLE
+=========================
+
+from abc import ABC, abstractmethod
+
+class Flyable(ABC):
+
+    @abstractmethod
+    def fly(self):
+        pass
+
+class Swimmable(ABC):
+
+    @abstractmethod
+    def swim(self):
+        pass
+
+-------------------------
+
+A class can use MANY interfaces:
+
+class Duck(Flyable, Swimmable):
+
+    def fly(self):
+        print("Duck is flying")
+
+    def swim(self):
+        print("Duck is swimming")
+
+class Airplane(Flyable):
+
+    def fly(self):
+        print("Airplane is flying")
+
+d = Duck()
+d.fly()
+d.swim()
+
+a = Airplane()
+a.fly()
+
+Output:
+Duck is flying
+Duck is swimming
+Airplane is flying
+
+-------------------------
+
+Different classes, same promise:
+
+things = [Duck(), Airplane()]
+
+for t in things:
+    t.fly()
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+from abc import ABC, abstractmethod
+
+class Playable(ABC):
+
+    @abstractmethod
+    def play(self):
+        pass
+
+    @abstractmethod
+    def stop(self):
+        pass
+
+class MusicPlayer(Playable):
+
+    def play(self):
+        print("Music playing")
+
+    def stop(self):
+        print("Music stopped")
+
+class VideoPlayer(Playable):
+
+    def play(self):
+        print("Video playing")
+
+    def stop(self):
+        print("Video stopped")
+
+for p in [MusicPlayer(), VideoPlayer()]:
+    p.play()
+    p.stop()
+
+Output:
+Music playing
+Music stopped
+Video playing
+Video stopped
+
+=========================
+ABSTRACT CLASS vs INTERFACE
+=========================
+
+Abstract class -> some methods with code, some without
+Interface      -> ONLY methods without code (only promises)
+
+=========================
+REMEMBER
+=========================
+
+Interface = abstract class with only @abstractmethod
+class A(B, C)  -> one class can follow many interfaces
+Every class must write ALL the abstract methods

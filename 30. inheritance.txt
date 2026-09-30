@@ -1,0 +1,116 @@
+=========================
+PYTHON INHERITANCE
+=========================
+
+Inheritance = a child class gets the attributes
+and methods of a parent class.
+
+Syntax:  class Child(Parent):
+
+=========================
+PARENT & CHILD
+=========================
+
+Parent class (Animal):
+
+class Animal:
+
+    def __init__(self, name):
+        self.name = name
+
+    def eat(self):
+        print(self.name, "is eating.")
+
+-------------------------
+
+Child class (Dog) inherits from Animal:
+
+class Dog(Animal):
+
+    def __init__(self, name, breed):
+        super().__init__(name)     # call the parent constructor
+        self.breed = breed
+
+    def bark(self):
+        print(self.name, "says: Woof!")
+
+-------------------------
+
+Usage:
+
+d = Dog("Rex", "German Shepherd")
+
+d.eat()       # inherited from Animal
+d.bark()      # Dog's own method
+
+Output:
+Rex is eating.
+Rex says: Woof!
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Vehicle:
+
+    def __init__(self, brand, speed):
+        self.brand = brand
+        self.speed = speed
+
+    def move(self):
+        print(f"{self.brand} moves at {self.speed} km/h.")
+
+class Car(Vehicle):
+
+    def __init__(self, brand, speed, doors):
+        super().__init__(brand, speed)
+        self.doors = doors
+
+    def info(self):
+        print(f"{self.brand} | {self.doors} doors")
+
+c = Car("Toyota", 120, 4)
+
+c.move()      # from Vehicle
+c.info()      # from Car
+
+Output:
+Toyota moves at 120 km/h.
+Toyota | 4 doors
+
+=========================
+CHECK THE RELATION
+=========================
+
+print(isinstance(c, Car))        # True
+print(isinstance(c, Vehicle))    # True  (a Car IS a Vehicle)
+print(issubclass(Car, Vehicle))  # True
+
+=========================
+MULTIPLE INHERITANCE (Python can do it!)
+=========================
+
+class Flyer:
+    def fly(self):
+        print("Flying")
+
+class Swimmer:
+    def swim(self):
+        print("Swimming")
+
+class Duck(Flyer, Swimmer):
+    pass
+
+d = Duck()
+d.fly()
+d.swim()
+
+=========================
+REMEMBER
+=========================
+
+class Child(Parent):   -> child inherits from parent
+super().__init__()     -> calls the parent constructor
+Child gets all parent attributes and methods
+Child can add its own attributes and methods
+"is-a" relation:  a Dog IS an Animal

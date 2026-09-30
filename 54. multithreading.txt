@@ -1,0 +1,159 @@
+=========================
+PYTHON MULTITHREADING
+=========================
+
+Multithreading = running MANY threads at the same time.
+
+-------------------------
+
+EXAMPLE: 3 WORKERS
+
+import threading
+import time
+
+def work(name):
+    print(name, "starts")
+    time.sleep(2)
+    print(name, "ends")
+
+threads = []
+
+for i in range(3):
+    t = threading.Thread(target=work, args=(f"Worker {i + 1}",))
+    threads.append(t)
+    t.start()
+
+for t in threads:
+    t.join()
+
+print("All workers finished")
+
+Output (order may change):
+Worker 1 starts
+Worker 2 starts
+Worker 3 starts
+Worker 1 ends
+Worker 2 ends
+Worker 3 ends
+All workers finished
+
+Total time: about 2 seconds (not 6!)
+
+-------------------------
+
+PROBLEM: RACE CONDITION
+
+Two threads change the SAME variable at the same time.
+The result can be wrong.
+
+counter = 0
+
+def add():
+    global counter
+    for _ in range(100000):
+        counter += 1
+
+SOLUTION: Lock  (only ONE thread at a time)
+
+import threading
+
+counter = 0
+lock = threading.Lock()
+
+def add():
+    global counter
+    for _ in range(100000):
+        with lock:
+            counter += 1
+
+t1 = threading.Thread(target=add)
+t2 = threading.Thread(target=add)
+
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+
+print(counter)
+
+Output:
+200000
+
+-------------------------
+
+THREAD POOL (easier way)
+
+from concurrent.futures import ThreadPoolExecutor
+import time
+
+def square(n):
+    time.sleep(1)
+    return n * n
+
+with ThreadPoolExecutor(max_workers=3) as pool:
+    results = list(pool.map(square, [1, 2, 3, 4, 5]))
+
+print(results)
+
+Output:
+[1, 4, 9, 16, 25]
+
+(The pool reuses 3 threads for 5 jobs and keeps the order.)
+
+=========================
+COMPLETE EXAMPLE (Download 3 files)
+=========================
+
+import threading
+import time
+
+def download(file, seconds):
+    print("Start:", file)
+    time.sleep(seconds)
+    print("Done:", file)
+
+files = [("a.zip", 3), ("b.zip", 1), ("c.zip", 2)]
+
+threads = [
+    threading.Thread(target=download, args=f)
+    for f in files
+]
+
+for t in threads:
+    t.start()
+
+for t in threads:
+    t.join()
+
+print("All downloads finished")
+
+Output:
+Start: a.zip
+Start: b.zip
+Start: c.zip
+Done: b.zip
+Done: c.zip
+Done: a.zip
+All downloads finished
+
+=========================
+IMPORTANT: THE GIL
+=========================
+
+Python has a "GIL": only ONE thread runs Python code at a time.
+
+Threads ARE great for WAITING tasks:
+    internet, files, downloads, sleep
+
+Threads DO NOT make heavy math faster.
+For heavy math use the  multiprocessing  module.
+
+=========================
+REMEMBER
+=========================
+
+Create many threads with a loop
+Save them in a list, then join() each one
+Lock  -> protects shared variables (with lock:)
+ThreadPoolExecutor -> easy pool of threads
+GIL   -> threads help with waiting, not with heavy math

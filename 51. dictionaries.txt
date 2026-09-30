@@ -1,0 +1,148 @@
+=========================
+PYTHON DICTIONARIES
+=========================
+
+A dictionary stores data as  KEY : VALUE  pairs.
+Like a real dictionary: you look up a word (key)
+and get its meaning (value).
+
+(It is the Python version of Java HashMap.)
+
+-------------------------
+
+CREATE
+
+student = {
+    "name": "Hamza",
+    "age": 20,
+    "city": "Casablanca"
+}
+
+empty = {}
+
+-------------------------
+
+READ
+
+print(student["name"])            # Hamza
+print(student["age"])             # 20
+
+Safe way (no error if the key is missing):
+
+print(student.get("phone"))               # None
+print(student.get("phone", "No phone"))   # No phone
+
+-------------------------
+
+ADD / CHANGE
+
+student["age"] = 21               # change
+student["school"] = "MIT"         # add a new key
+
+-------------------------
+
+REMOVE
+
+del student["city"]
+age = student.pop("age")          # remove and return the value
+
+-------------------------
+
+CHECK A KEY
+
+print("name" in student)          # True
+print("phone" in student)         # False
+
+-------------------------
+
+SIZE
+
+print(len(student))
+
+-------------------------
+
+LOOP
+
+scores = {"Ali": 15, "Sara": 18, "Hamza": 12}
+
+for key in scores:
+    print(key)
+
+for key, value in scores.items():
+    print(key, "->", value)
+
+Output:
+Ali -> 15
+Sara -> 18
+Hamza -> 12
+
+print(list(scores.keys()))        # ['Ali', 'Sara', 'Hamza']
+print(list(scores.values()))      # [15, 18, 12]
+
+-------------------------
+
+COUNT THINGS (very common)
+
+text = "banana"
+count = {}
+
+for letter in text:
+    count[letter] = count.get(letter, 0) + 1
+
+print(count)
+
+Output:
+{'b': 1, 'a': 3, 'n': 2}
+
+-------------------------
+
+DICTIONARY OF DICTIONARIES
+
+users = {
+    "u1": {"name": "Ali", "age": 22},
+    "u2": {"name": "Sara", "age": 25}
+}
+
+print(users["u2"]["name"])        # Sara
+
+=========================
+COMPLETE EXAMPLE (Phone book)
+=========================
+
+phones = {}
+
+phones["Ali"] = "0612345678"
+phones["Sara"] = "0698765432"
+
+name = input("Search a name: ")
+
+if name in phones:
+    print(name, ":", phones[name])
+else:
+    print("Not found")
+
+Output (example):
+Search a name: Sara
+Sara : 0698765432
+
+=========================
+MOST USED
+=========================
+
+d[key]            -> read (error if missing)
+d.get(key)        -> read (safe)
+d[key] = value    -> add / change
+del d[key]        -> remove
+key in d          -> exists?
+d.items()         -> key + value
+d.keys()          -> all keys
+d.values()        -> all values
+
+=========================
+REMEMBER
+=========================
+
+Keys are UNIQUE
+Keys are usually text or numbers
+Use get() to avoid KeyError
+Loop with:  for key, value in d.items()

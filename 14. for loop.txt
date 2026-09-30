@@ -1,0 +1,118 @@
+=========================
+PYTHON FOR LOOP
+=========================
+
+A for loop goes through items ONE BY ONE.
+Use it when you know how many times to repeat.
+
+=========================
+range()
+=========================
+
+range(5)          -> 0, 1, 2, 3, 4
+range(1, 6)       -> 1, 2, 3, 4, 5      (end NOT included)
+range(0, 10, 2)   -> 0, 2, 4, 6, 8      (step of 2)
+range(5, 0, -1)   -> 5, 4, 3, 2, 1      (backwards)
+
+-------------------------
+
+Example
+
+for i in range(5):
+    print(i)
+
+Output:
+0
+1
+2
+3
+4
+
+-------------------------
+
+From 1 to 5
+
+for i in range(1, 6):
+    print(i)
+
+-------------------------
+
+Backwards (countdown)
+
+for i in range(5, 0, -1):
+    print(i)
+
+print("Go!")
+
+=========================
+LOOP OVER A LIST
+=========================
+
+fruits = ["apple", "banana", "orange"]
+
+for fruit in fruits:
+    print(fruit)
+
+Output:
+apple
+banana
+orange
+
+-------------------------
+
+LOOP OVER TEXT
+
+for letter in "Hi!":
+    print(letter)
+
+-------------------------
+
+NEED THE POSITION TOO? enumerate
+
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+
+Output:
+0 apple
+1 banana
+2 orange
+
+=========================
+COMPLETE EXAMPLE (Sum 1 to 100)
+=========================
+
+total = 0
+
+for i in range(1, 101):
+    total += i
+
+print("Sum:", total)
+
+Output:
+Sum: 5050
+
+=========================
+TEMPLATE
+=========================
+
+for variable in range(start, end, step):
+    # code
+
+for item in collection:
+    # code
+
+=========================
+for or while ?
+=========================
+
+for   -> you know the number of repeats / you have a list
+while -> you repeat until something happens
+
+=========================
+REMEMBER
+=========================
+
+range(n)          -> 0 to n-1
+range(a, b)       -> a to b-1
+The end is NEVER included
+enumerate()       -> gives index + item

@@ -1,0 +1,111 @@
+=========================
+PYTHON WRITE FILES
+=========================
+
+Use open() to work with files.
+
+open("file.txt", "mode")
+
+MODES
+
+"w"   write  (creates the file, ERASES the old content)
+"a"   append (adds at the END, keeps the old content)
+"x"   create (error if the file already exists)
+
+-------------------------
+
+ALWAYS USE  with
+It closes the file automatically, even if there is an error.
+
+with open("names.txt", "w") as file:
+    file.write("Hamza\n")
+    file.write("Ali\n")
+
+Result in names.txt:
+Hamza
+Ali
+
+(\n = new line. write() does NOT add it alone.)
+
+-------------------------
+
+APPEND (keep the old text)
+
+with open("names.txt", "a") as file:
+    file.write("Sara\n")
+
+-------------------------
+
+WRITE A LIST
+
+names = ["Ali", "Sara", "Lina"]
+
+with open("names.txt", "w") as file:
+    for name in names:
+        file.write(name + "\n")
+
+-------------------------
+
+writelines()
+
+lines = ["Line 1\n", "Line 2\n", "Line 3\n"]
+
+with open("text.txt", "w") as file:
+    file.writelines(lines)
+
+-------------------------
+
+print() INTO A FILE
+
+with open("log.txt", "w") as file:
+    print("Hello file", file=file)
+
+-------------------------
+
+SPECIAL CHARACTERS (accents, Arabic...)
+
+with open("text.txt", "w", encoding="utf-8") as file:
+    file.write("Café\n")
+
+=========================
+COMPLETE EXAMPLE (Save user notes)
+=========================
+
+note = input("Write a note: ")
+
+with open("notes.txt", "a") as file:
+    file.write(note + "\n")
+
+print("Note saved!")
+
+Output:
+Write a note: Buy milk
+Note saved!
+
+=========================
+CATCH ERRORS
+=========================
+
+try:
+    with open("data.txt", "w") as file:
+        file.write("Hello")
+    print("File written")
+except PermissionError:
+    print("Cannot write here")
+
+=========================
+TEMPLATE
+=========================
+
+with open("filename.txt", "w") as file:
+    file.write("text\n")
+
+=========================
+REMEMBER
+=========================
+
+"w"  -> erases the old content!
+"a"  -> adds at the end
+with -> closes the file for you
+write() does not add a new line: use \n
+encoding="utf-8" for special characters

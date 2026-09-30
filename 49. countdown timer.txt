@@ -1,0 +1,119 @@
+=========================
+PYTHON COUNTDOWN TIMER
+=========================
+
+We use time.sleep() to wait one second between numbers.
+
+import time
+
+-------------------------
+
+SIMPLE COUNTDOWN
+
+import time
+
+for i in range(5, 0, -1):
+    print(i)
+    time.sleep(1)
+
+print("Go!")
+
+Output (one number per second):
+5
+4
+3
+2
+1
+Go!
+
+-------------------------
+
+USER CHOOSES THE TIME
+
+import time
+
+seconds = int(input("Enter seconds: "))
+
+for i in range(seconds, 0, -1):
+    print(i)
+    time.sleep(1)
+
+print("Time is up!")
+
+-------------------------
+
+SAME LINE (the number changes in place)
+
+import time
+
+for i in range(5, 0, -1):
+    print(f"\rTime left: {i} ", end="")
+    time.sleep(1)
+
+print("\nDone!")
+
+(\r = go back to the start of the line)
+
+-------------------------
+
+MINUTES : SECONDS FORMAT
+
+import time
+
+total = 125          # seconds
+
+while total > 0:
+    minutes, secs = divmod(total, 60)
+    print(f"{minutes:02}:{secs:02}")
+    time.sleep(1)
+    total -= 1
+
+print("00:00  Time is up!")
+
+divmod(125, 60) -> (2, 5)  = 2 minutes and 5 seconds
+:02 -> always 2 digits (5 becomes 05)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+import time
+
+def countdown(total):
+    while total > 0:
+        minutes, secs = divmod(total, 60)
+        print(f"{minutes:02}:{secs:02}")
+        time.sleep(1)
+        total -= 1
+    print("00:00  Time is up!")
+
+countdown(3)
+
+Output:
+00:03
+00:02
+00:01
+00:00  Time is up!
+
+=========================
+STOP WITH CTRL + C
+=========================
+
+import time
+
+try:
+    for i in range(10, 0, -1):
+        print(i)
+        time.sleep(1)
+except KeyboardInterrupt:
+    print("\nStopped by the user")
+
+=========================
+REMEMBER
+=========================
+
+time.sleep(1)     -> wait 1 second
+range(5, 0, -1)   -> 5, 4, 3, 2, 1
+divmod(a, b)      -> (a // b, a % b)
+f"{x:02}"         -> 2 digits (05)
+\r                -> rewrite the same line

@@ -1,0 +1,115 @@
+=========================
+PYTHON *args AND **kwargs (varargs)
+=========================
+
+Sometimes you do not know HOW MANY arguments
+the user will send. Python has two tools for that.
+
+=========================
+*args  (many values)
+=========================
+
+*args collects extra values into a TUPLE.
+
+def add_all(*args):
+    total = 0
+    for n in args:
+        total += n
+    return total
+
+print(add_all(1, 2))            # 3
+print(add_all(1, 2, 3, 4, 5))   # 15
+print(add_all())                # 0
+
+-------------------------
+
+Simpler:
+
+def add_all(*numbers):
+    return sum(numbers)
+
+-------------------------
+
+With a normal parameter before
+
+def greet_all(greeting, *names):
+    for name in names:
+        print(greeting, name)
+
+greet_all("Hello", "Ali", "Sara", "Hamza")
+
+Output:
+Hello Ali
+Hello Sara
+Hello Hamza
+
+=========================
+**kwargs  (many named values)
+=========================
+
+**kwargs collects named values into a DICTIONARY.
+
+def show_info(**kwargs):
+    for key, value in kwargs.items():
+        print(key, "=", value)
+
+show_info(name="Hamza", age=20, city="Casablanca")
+
+Output:
+name = Hamza
+age = 20
+city = Casablanca
+
+=========================
+BOTH TOGETHER
+=========================
+
+Order:  normal, *args, **kwargs
+
+def demo(a, *args, **kwargs):
+    print(a)
+    print(args)
+    print(kwargs)
+
+demo(1, 2, 3, x=10, y=20)
+
+Output:
+1
+(2, 3)
+{'x': 10, 'y': 20}
+
+=========================
+UNPACK A LIST INTO A FUNCTION
+=========================
+
+def add(a, b, c):
+    return a + b + c
+
+nums = [1, 2, 3]
+
+print(add(*nums))       # 6
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+def average(*numbers):
+    if len(numbers) == 0:
+        return 0
+    return sum(numbers) / len(numbers)
+
+print(average(10, 20))
+print(average(5, 10, 15, 20))
+
+Output:
+15.0
+12.5
+
+=========================
+REMEMBER
+=========================
+
+*args     -> any number of values   (tuple)
+**kwargs  -> any number of key=value (dict)
+The names "args" and "kwargs" are only a habit.
+The stars * and ** are what matter.

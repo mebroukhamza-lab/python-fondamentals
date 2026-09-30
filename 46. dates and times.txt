@@ -1,0 +1,130 @@
+=========================
+PYTHON DATES & TIMES
+=========================
+
+Use the datetime module.
+
+from datetime import datetime, date, timedelta
+
+=========================
+CURRENT DATE AND TIME
+=========================
+
+now = datetime.now()
+today = date.today()
+
+print(now)        # 2026-06-29 14:35:20.123456
+print(today)      # 2026-06-29
+
+-------------------------
+
+PIECES
+
+print(now.year)      # 2026
+print(now.month)     # 6
+print(now.day)       # 29
+print(now.hour)      # 14
+print(now.minute)    # 35
+print(now.second)    # 20
+
+=========================
+FORMAT (datetime -> text)   strftime
+=========================
+
+print(now.strftime("%d/%m/%Y"))          # 29/06/2026
+print(now.strftime("%H:%M:%S"))          # 14:35:20
+print(now.strftime("%d/%m/%Y %H:%M"))    # 29/06/2026 14:35
+print(now.strftime("%A"))                # Monday
+print(now.strftime("%B"))                # June
+
+CODES
+
+%Y  year (2026)      %y  year (26)
+%m  month (06)       %B  month name
+%d  day (29)         %A  day name
+%H  hour (00-23)     %M  minute
+%S  second
+
+=========================
+CREATE A DATE
+=========================
+
+birthday = date(2005, 3, 15)
+
+print(birthday)      # 2005-03-15
+
+-------------------------
+
+TEXT -> DATE   strptime
+
+text = "25/12/2026"
+
+d = datetime.strptime(text, "%d/%m/%Y")
+
+print(d.year)        # 2026
+
+=========================
+DATE MATH  timedelta
+=========================
+
+today = date.today()
+
+tomorrow = today + timedelta(days=1)
+next_week = today + timedelta(weeks=1)
+yesterday = today - timedelta(days=1)
+
+-------------------------
+
+DIFFERENCE BETWEEN TWO DATES
+
+d1 = date(2026, 1, 1)
+d2 = date(2026, 12, 25)
+
+diff = d2 - d1
+
+print(diff.days)     # 358
+
+=========================
+COMPLETE EXAMPLE (Age calculator)
+=========================
+
+from datetime import date
+
+birth = date(2005, 3, 15)
+today = date.today()
+
+age = today.year - birth.year
+
+if (today.month, today.day) < (birth.month, birth.day):
+    age -= 1
+
+print("Age:", age)
+
+=========================
+COMPLETE EXAMPLE 2 (Days until an event)
+=========================
+
+from datetime import date
+
+event = date(2026, 12, 31)
+left = (event - date.today()).days
+
+print("Days left:", left)
+
+=========================
+COMPARE DATES
+=========================
+
+d1 < d2      -> d1 is before d2
+d1 == d2     -> same day
+
+=========================
+REMEMBER
+=========================
+
+datetime.now()       -> now
+date.today()         -> today
+strftime()           -> date to text
+strptime()           -> text to date
+timedelta(days=5)    -> a duration
+date2 - date1        -> gives a timedelta (.days)

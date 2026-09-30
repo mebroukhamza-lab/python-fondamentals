@@ -1,0 +1,104 @@
+=========================
+PYTHON COMPOSITION
+=========================
+
+Composition = a "HAS-A" relation where the
+parts CANNOT exist without the whole.
+
+Example: a Car HAS an engine.
+The engine is created INSIDE the car.
+If the car is destroyed, the engine is destroyed too.
+
+-------------------------
+
+Example
+
+class Engine:
+
+    def __init__(self, power):
+        self.power = power
+
+    def start(self):
+        print(f"Engine ({self.power} HP) started")
+
+class Car:
+
+    def __init__(self, brand, power):
+        self.brand = brand
+        self.engine = Engine(power)      # created INSIDE the car
+
+    def drive(self):
+        self.engine.start()
+        print(self.brand, "is driving")
+
+car = Car("Toyota", 150)
+
+car.drive()
+
+Output:
+Engine (150 HP) started
+Toyota is driving
+
+-------------------------
+
+The outside world never creates the Engine.
+The Car creates it and owns it.
+
+=========================
+COMPLETE EXAMPLE (House)
+=========================
+
+class Room:
+
+    def __init__(self, name):
+        self.name = name
+
+class House:
+
+    def __init__(self, address):
+        self.address = address
+        self.rooms = [Room("Kitchen"), Room("Bedroom")]   # created inside
+
+    def show(self):
+        print("House at", self.address)
+        for r in self.rooms:
+            print("-", r.name)
+
+h = House("12 Main Street")
+
+h.show()
+
+Output:
+House at 12 Main Street
+- Kitchen
+- Bedroom
+
+=========================
+AGGREGATION vs COMPOSITION
+=========================
+
+Aggregation:
+    team = Team("Lions")
+    team.add_player(p1)          # player made OUTSIDE
+    -> parts live alone
+
+Composition:
+    self.engine = Engine(power)  # engine made INSIDE
+    -> parts die with the whole
+
+=========================
+INHERITANCE vs COMPOSITION
+=========================
+
+Inheritance  -> "is a"   -> class Dog(Animal)
+Composition  -> "has a"  -> self.engine = Engine()
+
+Tip: if you can say "X has a Y", use composition.
+
+=========================
+REMEMBER
+=========================
+
+Composition = the class CREATES its parts inside __init__
+Strong link: the part belongs to only one whole
+Use it for "has-a" relations

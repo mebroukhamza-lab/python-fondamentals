@@ -1,0 +1,137 @@
+=========================
+PYTHON VARIABLE SCOPE
+=========================
+
+Scope = WHERE a variable can be used.
+
+-------------------------
+
+LOCAL VARIABLE
+
+Created inside a function.
+Works ONLY inside that function.
+
+def hello():
+    message = "Hi"
+    print(message)
+
+hello()              # Hi
+print(message)       # ERROR: message does not exist here
+
+-------------------------
+
+GLOBAL VARIABLE
+
+Created outside functions.
+Can be READ everywhere.
+
+name = "Hamza"
+
+def show():
+    print(name)
+
+show()               # Hamza
+
+-------------------------
+
+CHANGING A GLOBAL VARIABLE
+
+Without "global", Python creates a NEW local variable.
+
+count = 0
+
+def add():
+    count = 5        # new local variable!
+
+add()
+print(count)         # 0   (unchanged)
+
+With "global":
+
+count = 0
+
+def add():
+    global count
+    count += 1
+
+add()
+add()
+print(count)         # 2
+
+-------------------------
+
+BETTER: use parameters and return
+
+def add_one(x):
+    return x + 1
+
+count = 0
+count = add_one(count)
+print(count)         # 1
+
+(Avoid "global" when you can. Code is easier to understand.)
+
+-------------------------
+
+SAME NAME, DIFFERENT SCOPE
+
+x = 10
+
+def test():
+    x = 99           # local x
+    print(x)
+
+test()               # 99
+print(x)             # 10
+
+-------------------------
+
+LOOP VARIABLES STAY ALIVE
+
+In Python, a variable created in a for / if block
+still exists after it.
+
+for i in range(3):
+    pass
+
+print(i)             # 2
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+total = 100               # global
+
+def show_total():
+    print("Total:", total)
+
+def double(x):
+    result = x * 2        # local
+    return result
+
+show_total()
+print(double(5))
+
+Output:
+Total: 100
+10
+
+=========================
+THE RULE (LEGB)
+=========================
+
+Python looks for a variable in this order:
+
+L - Local      (inside the function)
+E - Enclosing  (a function around it)
+G - Global     (the file)
+B - Built-in   (print, len, ...)
+
+=========================
+REMEMBER
+=========================
+
+Local   -> only inside the function
+Global  -> the whole file
+global  -> keyword to CHANGE a global variable
+Prefer parameters + return

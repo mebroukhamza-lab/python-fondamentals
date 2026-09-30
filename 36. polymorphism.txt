@@ -1,0 +1,119 @@
+=========================
+PYTHON POLYMORPHISM
+=========================
+
+Polymorphism = "many forms".
+
+The SAME action (same method name) gives a
+DIFFERENT result depending on the object.
+
+-------------------------
+
+Example
+
+class Dog:
+    def speak(self):
+        print("Woof!")
+
+class Cat:
+    def speak(self):
+        print("Meow!")
+
+class Cow:
+    def speak(self):
+        print("Moo!")
+
+animals = [Dog(), Cat(), Cow()]
+
+for a in animals:
+    a.speak()
+
+Output:
+Woof!
+Meow!
+Moo!
+
+Same call  a.speak()  ->  3 different results.
+
+-------------------------
+
+POLYMORPHISM IN PYTHON YOU ALREADY USE
+
+len("Hello")        # 5   (text)
+len([1, 2, 3])      # 3   (list)
+
+print(2 + 3)        # 5        (numbers are added)
+print("a" + "b")    # ab       (texts are joined)
+print([1] + [2])    # [1, 2]   (lists are joined)
+
+-------------------------
+
+POLYMORPHISM WITH INHERITANCE
+
+class Animal:
+    def speak(self):
+        print("Some sound")
+
+class Dog(Animal):
+    def speak(self):
+        print("Woof!")
+
+class Cat(Animal):
+    def speak(self):
+        print("Meow!")
+
+for a in [Dog(), Cat(), Animal()]:
+    a.speak()
+
+Output:
+Woof!
+Meow!
+Some sound
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Employee:
+
+    def __init__(self, name):
+        self.name = name
+
+    def work(self):
+        print(self.name, "is working")
+
+class Developer(Employee):
+
+    def work(self):
+        print(self.name, "is writing code")
+
+class Designer(Employee):
+
+    def work(self):
+        print(self.name, "is drawing")
+
+team = [Developer("Hamza"), Designer("Sara"), Employee("Ali")]
+
+for person in team:
+    person.work()
+
+Output:
+Hamza is writing code
+Sara is drawing
+Ali is working
+
+=========================
+WHY IT IS USEFUL
+=========================
+
+One loop works for ALL types.
+You can add a new class later and
+the loop does not change.
+
+=========================
+REMEMBER
+=========================
+
+Polymorphism = same method name, different behavior
+Works with inheritance (overriding)
+Works without inheritance too (duck typing)

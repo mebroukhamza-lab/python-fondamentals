@@ -1,0 +1,107 @@
+=========================
+PYTHON AGGREGATION
+=========================
+
+Aggregation = a "HAS-A" relation where the
+parts can EXIST ALONE.
+
+Example: a Team HAS players.
+If the team disappears, the players still exist.
+
+The parts are created OUTSIDE and given to the class.
+
+-------------------------
+
+Example
+
+class Player:
+
+    def __init__(self, name):
+        self.name = name
+
+class Team:
+
+    def __init__(self, name):
+        self.name = name
+        self.players = []
+
+    def add_player(self, player):
+        self.players.append(player)
+
+    def show(self):
+        print("Team:", self.name)
+        for p in self.players:
+            print("-", p.name)
+
+-------------------------
+
+Usage
+
+p1 = Player("Ali")          # created OUTSIDE the team
+p2 = Player("Sara")
+
+team = Team("Lions")
+
+team.add_player(p1)
+team.add_player(p2)
+
+team.show()
+
+del team                    # the team is gone...
+print(p1.name)              # ...but Ali still exists!
+
+Output:
+Team: Lions
+- Ali
+- Sara
+Ali
+
+=========================
+COMPLETE EXAMPLE (Library)
+=========================
+
+class Book:
+
+    def __init__(self, title):
+        self.title = title
+
+class Library:
+
+    def __init__(self):
+        self.books = []
+
+    def add(self, book):
+        self.books.append(book)
+
+    def show(self):
+        for b in self.books:
+            print(b.title)
+
+b1 = Book("Python 101")
+b2 = Book("Data Science")
+
+lib = Library()
+lib.add(b1)
+lib.add(b2)
+
+lib.show()
+
+Output:
+Python 101
+Data Science
+
+=========================
+IS-A vs HAS-A
+=========================
+
+Inheritance -> IS-A   (a Dog IS an Animal)
+Aggregation -> HAS-A  (a Team HAS players, they live alone)
+Composition -> HAS-A  (a Car HAS an engine, they live together)
+
+=========================
+REMEMBER
+=========================
+
+Aggregation = HAS-A, parts live independently
+Parts are created OUTSIDE the class
+The class only receives and stores them

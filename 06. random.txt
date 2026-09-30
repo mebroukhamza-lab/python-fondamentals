@@ -1,0 +1,87 @@
+=========================
+PYTHON RANDOM
+=========================
+
+Use random to get unpredictable values
+(games, dice, passwords, quizzes...).
+
+First, write this at the top:
+
+import random
+
+=========================
+RANDOM NUMBERS
+=========================
+
+print(random.randint(1, 10))       # whole number from 1 to 10 (10 included)
+print(random.random())             # decimal from 0.0 to 1.0
+print(random.uniform(1.5, 5.5))    # decimal between 1.5 and 5.5
+print(random.randrange(0, 10, 2))  # 0, 2, 4, 6 or 8
+
+=========================
+RANDOM FROM A LIST
+=========================
+
+colors = ["red", "green", "blue"]
+
+print(random.choice(colors))        # ONE random item
+print(random.sample(colors, 2))     # 2 different random items
+random.shuffle(colors)              # mixes the list itself
+print(colors)
+
+=========================
+EXAMPLES
+=========================
+
+Dice:
+
+dice = random.randint(1, 6)
+print("You rolled:", dice)
+
+-------------------------
+
+Coin flip:
+
+coin = random.choice(["Heads", "Tails"])
+print(coin)
+
+-------------------------
+
+Same result every time (seed):
+
+random.seed(42)
+print(random.randint(1, 100))
+
+(With the same seed you always get the same numbers.)
+
+=========================
+COMPLETE EXAMPLE (Guess the number)
+=========================
+
+import random
+
+secret = random.randint(1, 10)
+
+guess = int(input("Guess (1-10): "))
+
+if guess == secret:
+    print("You win!")
+else:
+    print("You lose. The number was", secret)
+
+=========================
+MOST USED
+=========================
+
+random.randint(a, b)     -> whole number a..b
+random.random()          -> 0.0 .. 1.0
+random.choice(list)      -> one item
+random.shuffle(list)     -> mix the list
+random.sample(list, n)   -> n different items
+
+=========================
+REMEMBER
+=========================
+
+import random    -> always at the top
+randint includes BOTH numbers (1 and 10)

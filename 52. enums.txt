@@ -1,0 +1,142 @@
+=========================
+PYTHON ENUMS
+=========================
+
+An enum is a group of NAMED constants.
+Use it when a value can only be one of a few choices.
+
+Examples: days of the week, colors, order status.
+
+from enum import Enum
+
+-------------------------
+
+CREATE
+
+from enum import Enum
+
+class Color(Enum):
+    RED = 1
+    GREEN = 2
+    BLUE = 3
+
+-------------------------
+
+USE
+
+c = Color.RED
+
+print(c)              # Color.RED
+print(c.name)         # RED
+print(c.value)        # 1
+
+-------------------------
+
+COMPARE
+
+if c == Color.RED:
+    print("It is red")
+
+-------------------------
+
+FROM A VALUE
+
+print(Color(2))       # Color.GREEN
+
+-------------------------
+
+LOOP THROUGH ALL
+
+for color in Color:
+    print(color.name, color.value)
+
+Output:
+RED 1
+GREEN 2
+BLUE 3
+
+-------------------------
+
+AUTO NUMBERS
+
+from enum import Enum, auto
+
+class Day(Enum):
+    MONDAY = auto()
+    TUESDAY = auto()
+    WEDNESDAY = auto()
+
+print(Day.TUESDAY.value)    # 2
+
+-------------------------
+
+WITH match-case
+
+day = Day.MONDAY
+
+match day:
+    case Day.MONDAY:
+        print("Start of the week")
+    case Day.TUESDAY:
+        print("Second day")
+    case _:
+        print("Other day")
+
+-------------------------
+
+ENUM WITH A METHOD
+
+class Planet(Enum):
+    EARTH = 3
+    MARS = 4
+
+    def describe(self):
+        return f"{self.name} is planet number {self.value}"
+
+print(Planet.MARS.describe())
+
+Output:
+MARS is planet number 4
+
+=========================
+COMPLETE EXAMPLE (Order status)
+=========================
+
+from enum import Enum
+
+class Status(Enum):
+    PENDING = "Waiting"
+    SHIPPED = "On the way"
+    DELIVERED = "Arrived"
+
+order = Status.SHIPPED
+
+print("Status:", order.name)
+print("Meaning:", order.value)
+
+if order == Status.DELIVERED:
+    print("Enjoy your package!")
+else:
+    print("Please wait...")
+
+Output:
+Status: SHIPPED
+Meaning: On the way
+Please wait...
+
+=========================
+WHY USE AN ENUM ?
+=========================
+
+Bad:   status = "shiped"        (typo, no error)
+Good:  status = Status.SHIPPED  (a typo gives an error)
+
+=========================
+REMEMBER
+=========================
+
+class Name(Enum)   -> create
+Name.ITEM          -> use
+.name              -> the name (text)
+.value             -> the value
+Names are written in CAPITAL letters

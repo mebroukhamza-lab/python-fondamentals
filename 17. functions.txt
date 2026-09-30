@@ -1,0 +1,138 @@
+=========================
+PYTHON FUNCTIONS
+=========================
+
+A function is a block of code with a NAME.
+You write it once, and you can use it many times.
+
+Syntax:
+
+def function_name(parameters):
+    # code
+    return value      # optional
+
+-------------------------
+
+Function without parameters
+
+def hello():
+    print("Hello!")
+
+Call it:
+
+hello()
+
+Output:
+Hello!
+
+-------------------------
+
+Function with a parameter
+
+def greet(name):
+    print("Hello", name)
+
+greet("Hamza")
+
+Output:
+Hello Hamza
+
+-------------------------
+
+Function with a return value
+
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+
+print(result)
+
+Output:
+8
+
+-------------------------
+
+print vs return
+
+print()   -> shows something on the screen
+return    -> gives a value BACK to the caller
+
+def square(x):
+    return x * x
+
+print(square(4))       # 16
+y = square(5) + 1      # 26 (we can use the result)
+
+-------------------------
+
+Return TWO values
+
+def min_max(numbers):
+    return min(numbers), max(numbers)
+
+low, high = min_max([4, 9, 1])
+
+print(low, high)       # 1 9
+
+-------------------------
+
+Function without return gives None
+
+def hello():
+    print("Hi")
+
+x = hello()
+print(x)               # None
+
+-------------------------
+
+DOCSTRING (a description of the function)
+
+def area(w, h):
+    """Return the area of a rectangle."""
+    return w * h
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+def hello():
+    print("Hello!")
+
+def square(x):
+    return x * x
+
+def is_even(n):
+    return n % 2 == 0
+
+hello()
+print(square(5))
+print(is_even(8))
+print(is_even(7))
+
+Output:
+Hello!
+25
+True
+False
+
+=========================
+TEMPLATE
+=========================
+
+def name(parameters):
+
+    # code
+
+    return value    # if needed
+
+=========================
+REMEMBER
+=========================
+
+def     -> creates a function
+return  -> sends a value back
+The function must be defined BEFORE you call it.
+Call a function by writing:  name(arguments)
+Names use snake_case:  calculate_total

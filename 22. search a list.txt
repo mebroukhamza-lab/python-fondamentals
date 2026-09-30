@@ -1,0 +1,105 @@
+=========================
+PYTHON: SEARCH IN A LIST
+=========================
+
+Goal: check if a value exists and find where it is.
+
+fruits = ["apple", "banana", "orange", "banana"]
+
+-------------------------
+
+1) Does it exist?  ->  in
+
+print("banana" in fruits)        # True
+print("grape" in fruits)         # False
+
+if "apple" in fruits:
+    print("Found!")
+
+-------------------------
+
+2) Where is it?  ->  index()
+
+print(fruits.index("orange"))    # 2
+
+(index() gives the FIRST position.)
+(If the value does not exist, Python gives an ERROR.)
+
+Safe way:
+
+if "grape" in fruits:
+    print(fruits.index("grape"))
+else:
+    print("Not found")
+
+-------------------------
+
+3) How many times?  ->  count()
+
+print(fruits.count("banana"))    # 2
+
+-------------------------
+
+4) Search with a loop
+
+numbers = [4, 8, 15, 16, 23, 42]
+target = 15
+found = False
+
+for i in range(len(numbers)):
+    if numbers[i] == target:
+        print("Found at index", i)
+        found = True
+        break
+
+if not found:
+    print("Not found")
+
+Output:
+Found at index 2
+
+-------------------------
+
+5) Search with for + else (Python special)
+
+for n in numbers:
+    if n == 15:
+        print("Found!")
+        break
+else:
+    print("Not found")
+
+(The else runs only if the loop finished WITHOUT break.)
+
+-------------------------
+
+6) Find the biggest / smallest
+
+print(max(numbers))    # 42
+print(min(numbers))    # 4
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+names = ["Ali", "Sara", "Hamza", "Lina"]
+
+target = input("Search a name: ")
+
+if target in names:
+    print(target, "is at position", names.index(target))
+else:
+    print(target, "is not in the list")
+
+Output (example):
+Search a name: Hamza
+Hamza is at position 2
+
+=========================
+REMEMBER
+=========================
+
+x in list       -> True / False
+list.index(x)   -> position (error if missing)
+list.count(x)   -> how many times
+Check with "in" BEFORE using index()

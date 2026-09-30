@@ -1,0 +1,120 @@
+=========================
+PYTHON TIMER  (like Java TimerTask)
+=========================
+
+A Timer runs a function AFTER some seconds,
+without stopping your main program.
+
+import threading
+
+-------------------------
+
+RUN ONCE AFTER 3 SECONDS
+
+import threading
+
+def hello():
+    print("Hello after 3 seconds!")
+
+timer = threading.Timer(3, hello)
+timer.start()
+
+print("The program continues...")
+
+Output:
+The program continues...
+Hello after 3 seconds!        (appears 3 seconds later)
+
+-------------------------
+
+WITH ARGUMENTS
+
+def greet(name):
+    print("Hello", name)
+
+timer = threading.Timer(2, greet, args=["Hamza"])
+timer.start()
+
+-------------------------
+
+CANCEL A TIMER
+
+timer = threading.Timer(5, hello)
+timer.start()
+
+timer.cancel()         # hello() will NEVER run
+
+-------------------------
+
+REPEAT EVERY SECOND
+
+import threading
+
+count = 0
+
+def tick():
+    global count
+    count += 1
+    print("Tick", count)
+
+    if count < 5:
+        threading.Timer(1, tick).start()     # start a new timer
+
+tick()
+
+Output:
+Tick 1
+Tick 2
+Tick 3
+Tick 4
+Tick 5
+
+(One tick per second.)
+
+-------------------------
+
+SIMPLE WAY: time.sleep()
+
+import time
+
+print("Wait...")
+time.sleep(2)              # the program STOPS for 2 seconds
+print("Done!")
+
+sleep() blocks the program.
+Timer does NOT block the program.
+
+=========================
+COMPLETE EXAMPLE (Reminder)
+=========================
+
+import threading
+
+def reminder():
+    print("Time to drink water!")
+
+threading.Timer(5, reminder).start()
+
+print("Reminder set for 5 seconds.")
+
+Output:
+Reminder set for 5 seconds.
+Time to drink water!           (5 seconds later)
+
+=========================
+TEMPLATE
+=========================
+
+import threading
+
+timer = threading.Timer(seconds, function)
+timer.start()
+
+=========================
+REMEMBER
+=========================
+
+threading.Timer(seconds, function)   -> create
+.start()    -> begin the countdown
+.cancel()   -> stop it before it runs
+time.sleep(s) -> pause the whole program

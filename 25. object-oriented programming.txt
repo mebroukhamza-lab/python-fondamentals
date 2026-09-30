@@ -1,0 +1,118 @@
+=========================
+PYTHON OBJECT-ORIENTED PROGRAMMING (OOP)
+=========================
+
+OOP = organize your code with CLASSES and OBJECTS.
+
+CLASS   = the PLAN (blueprint). Example: the plan of a car.
+OBJECT  = a real thing built from the plan. Example: YOUR car.
+
+One class can create MANY objects.
+
+-------------------------
+
+A class has:
+
+- attributes = data the object HAS   (name, age, color...)
+- methods    = actions the object DOES (run, eat, speak...)
+
+=========================
+CREATE A CLASS
+=========================
+
+class Dog:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def bark(self):
+        print(self.name, "says: Woof!")
+
+-------------------------
+
+CREATE OBJECTS
+
+dog1 = Dog("Rex", 3)
+dog2 = Dog("Luna", 5)
+
+-------------------------
+
+USE ATTRIBUTES AND METHODS
+
+print(dog1.name)       # Rex
+print(dog2.age)        # 5
+
+dog1.bark()            # Rex says: Woof!
+dog2.bark()            # Luna says: Woof!
+
+-------------------------
+
+CHANGE AN ATTRIBUTE
+
+dog1.age = 4
+print(dog1.age)        # 4
+
+=========================
+WHAT IS self ?
+=========================
+
+self = "this object".
+It is always the FIRST parameter of a method.
+Python sends it automatically. You do not write it when you call.
+
+dog1.bark()     ->  Python understands:  Dog.bark(dog1)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Car:
+
+    def __init__(self, brand, speed):
+        self.brand = brand
+        self.speed = speed
+
+    def drive(self):
+        print(self.brand, "is driving at", self.speed, "km/h")
+
+    def accelerate(self):
+        self.speed += 10
+
+car1 = Car("Toyota", 100)
+car2 = Car("BMW", 150)
+
+car1.drive()
+car1.accelerate()
+car1.drive()
+car2.drive()
+
+Output:
+Toyota is driving at 100 km/h
+Toyota is driving at 110 km/h
+BMW is driving at 150 km/h
+
+=========================
+TEMPLATE
+=========================
+
+class ClassName:
+
+    def __init__(self, parameters):
+        self.attribute = parameters
+
+    def method(self):
+        # code
+
+object = ClassName(values)
+object.method()
+
+=========================
+REMEMBER
+=========================
+
+class Name:     -> class names use CapitalLetters
+__init__        -> runs when the object is created
+self            -> the current object
+object.attr     -> read a value
+object.method() -> do an action

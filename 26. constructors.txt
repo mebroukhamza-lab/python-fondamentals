@@ -1,0 +1,116 @@
+=========================
+PYTHON CONSTRUCTORS  (__init__)
+=========================
+
+A constructor is a special method that runs
+AUTOMATICALLY when you create an object.
+
+Its job: give the first values to the object.
+
+In Python it is called:   __init__
+(two underscores before and after)
+
+-------------------------
+
+Example
+
+class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+s1 = Student("Hamza", 20)
+
+print(s1.name)     # Hamza
+print(s1.age)      # 20
+
+-------------------------
+
+HOW IT WORKS
+
+Student("Hamza", 20)
+   1) Python creates an empty object
+   2) Python calls __init__ with self = that object
+   3) self.name = "Hamza", self.age = 20
+
+self.name = name
+  ^            ^
+  |            the parameter (what you received)
+  the attribute (saved inside the object)
+
+-------------------------
+
+DEFAULT VALUES
+
+class Student:
+
+    def __init__(self, name, age=18):
+        self.name = name
+        self.age = age
+
+a = Student("Ali")           # age = 18
+b = Student("Sara", 22)      # age = 22
+
+-------------------------
+
+FIXED VALUES INSIDE THE CONSTRUCTOR
+
+class Account:
+
+    def __init__(self, owner):
+        self.owner = owner
+        self.balance = 0        # every account starts at 0
+
+-------------------------
+
+CONSTRUCTOR WITH A CHECK
+
+class Person:
+
+    def __init__(self, name, age):
+        if age < 0:
+            age = 0
+        self.name = name
+        self.age = age
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Book:
+
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+
+    def info(self):
+        print(f"{self.title} by {self.author} ({self.pages} pages)")
+
+b1 = Book("Python 101", "Ali", 300)
+b2 = Book("Learn Code", "Sara", 150)
+
+b1.info()
+b2.info()
+
+Output:
+Python 101 by Ali (300 pages)
+Learn Code by Sara (150 pages)
+
+=========================
+TEMPLATE
+=========================
+
+def __init__(self, param1, param2):
+    self.attribute1 = param1
+    self.attribute2 = param2
+
+=========================
+REMEMBER
+=========================
+
+__init__  -> the constructor (runs automatically)
+self      -> always the first parameter
+self.x = x  -> save the value inside the object
+A class can only have ONE __init__

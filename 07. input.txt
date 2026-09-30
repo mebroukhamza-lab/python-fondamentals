@@ -1,0 +1,101 @@
+=========================
+PYTHON USER INPUT
+=========================
+
+input() asks the user to type something.
+
+name = input("Enter your name: ")
+
+print("Hello", name)
+
+Output:
+Enter your name: Hamza
+Hello Hamza
+
+-------------------------
+
+VERY IMPORTANT
+
+input() ALWAYS gives you TEXT (str), even if the user types a number.
+
+age = input("Age: ")     # user types 20
+print(age + 1)           # ERROR! "20" is text, not a number
+
+Fix: convert it.
+
+age = int(input("Age: "))
+print(age + 1)           # 21
+
+=========================
+CONVERT THE INPUT
+=========================
+
+text  = input("Name: ")                # str  (nothing to convert)
+whole = int(input("Age: "))            # int
+deci  = float(input("Price: "))        # float
+
+=========================
+SEVERAL VALUES IN ONE LINE
+=========================
+
+a, b = input("Two numbers: ").split()
+
+a = int(a)
+b = int(b)
+
+print(a + b)
+
+Input:
+5 8
+
+Output:
+13
+
+-------------------------
+
+Shorter version:
+
+a, b = map(int, input("Two numbers: ").split())
+
+=========================
+CLEAN THE INPUT
+=========================
+
+name = input("Name: ").strip()          # removes spaces around
+name = input("Name: ").strip().title()  # " hamza " -> "Hamza"
+
+=========================
+IF THE USER TYPES A WRONG VALUE
+=========================
+
+try:
+    age = int(input("Age: "))
+    print("You are", age)
+except ValueError:
+    print("Please type a number!")
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+name = input("Name: ")
+age = int(input("Age: "))
+height = float(input("Height (m): "))
+
+print(f"{name} is {age} years old and {height}m tall.")
+
+Output:
+Name: Hamza
+Age: 20
+Height (m): 1.80
+Hamza is 20 years old and 1.8m tall.
+
+=========================
+REMEMBER
+=========================
+
+input()          -> always returns text
+int(input())     -> whole number
+float(input())   -> decimal number
+.strip()         -> removes extra spaces
+.split()         -> cuts text into pieces

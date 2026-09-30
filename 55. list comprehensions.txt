@@ -1,0 +1,118 @@
+=========================
+PYTHON LIST COMPREHENSIONS  (bonus)
+=========================
+
+A list comprehension builds a list in ONE line.
+It is one of the most loved Python tricks.
+
+Syntax:
+
+[expression for item in collection]
+
+-------------------------
+
+NORMAL WAY
+
+squares = []
+
+for x in range(1, 6):
+    squares.append(x ** 2)
+
+print(squares)          # [1, 4, 9, 16, 25]
+
+-------------------------
+
+COMPREHENSION WAY
+
+squares = [x ** 2 for x in range(1, 6)]
+
+print(squares)          # [1, 4, 9, 16, 25]
+
+Read it like English:
+"x squared, for every x in 1..5"
+
+-------------------------
+
+MORE EXAMPLES
+
+numbers = [1, 2, 3, 4]
+
+double = [n * 2 for n in numbers]
+print(double)           # [2, 4, 6, 8]
+
+names = ["ali", "sara"]
+
+upper = [n.upper() for n in names]
+print(upper)            # ['ALI', 'SARA']
+
+lengths = [len(n) for n in names]
+print(lengths)          # [3, 4]
+
+=========================
+WITH A CONDITION (filter)
+=========================
+
+[expression for item in collection if condition]
+
+numbers = [1, 2, 3, 4, 5, 6]
+
+even = [n for n in numbers if n % 2 == 0]
+print(even)             # [2, 4, 6]
+
+big = [n for n in numbers if n > 3]
+print(big)              # [4, 5, 6]
+
+-------------------------
+
+WITH if / else  (the if-else goes BEFORE the for)
+
+labels = ["even" if n % 2 == 0 else "odd" for n in numbers]
+
+print(labels)
+# ['odd', 'even', 'odd', 'even', 'odd', 'even']
+
+=========================
+OTHER COMPREHENSIONS
+=========================
+
+Dictionary:
+
+squares = {n: n ** 2 for n in range(1, 4)}
+print(squares)          # {1: 1, 2: 4, 3: 9}
+
+Set:
+
+letters = {c for c in "hello"}
+print(letters)          # {'h', 'e', 'l', 'o'}  (any order)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+scores = [45, 80, 92, 60, 71, 38]
+
+passed = [s for s in scores if s >= 50]
+bonus = [s + 5 for s in passed]
+
+print("Passed:", passed)
+print("With bonus:", bonus)
+
+Output:
+Passed: [80, 92, 60, 71]
+With bonus: [85, 97, 65, 76]
+
+=========================
+TEMPLATE
+=========================
+
+[expression for item in collection]
+[expression for item in collection if condition]
+
+=========================
+REMEMBER
+=========================
+
+[what to keep  for item in list  if condition]
+Short and readable = good
+Too long or too complex = use a normal for loop
+Works with lists [ ], dicts { : }, and sets { }

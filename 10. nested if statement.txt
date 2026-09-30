@@ -1,0 +1,100 @@
+=========================
+PYTHON NESTED IF
+=========================
+
+A nested if = an if INSIDE another if.
+Use it when you need to check a second thing
+only after the first thing is True.
+
+-------------------------
+
+Example
+
+age = 20
+has_ticket = True
+
+if age >= 18:
+    if has_ticket:
+        print("Welcome to the concert!")
+    else:
+        print("You need a ticket.")
+else:
+    print("You are too young.")
+
+Output:
+Welcome to the concert!
+
+-------------------------
+
+HOW TO READ IT
+
+1) Are you 18 or more?
+      NO  -> "You are too young."
+      YES -> go inside...
+2) Do you have a ticket?
+      YES -> "Welcome to the concert!"
+      NO  -> "You need a ticket."
+
+-------------------------
+
+THREE LEVELS
+
+age = 25
+has_id = True
+has_ticket = True
+
+if age >= 18:
+    if has_id:
+        if has_ticket:
+            print("Enter")
+
+=========================
+SIMPLER: USE and
+=========================
+
+Many nested ifs can be written in ONE line.
+
+if age >= 18 and has_id and has_ticket:
+    print("Enter")
+
+Same result, easier to read!
+
+=========================
+COMPLETE EXAMPLE (Login)
+=========================
+
+username = input("Username: ")
+password = input("Password: ")
+
+if username == "hamza":
+    if password == "1234":
+        print("Login successful")
+    else:
+        print("Wrong password")
+else:
+    print("User not found")
+
+Output (example):
+Username: hamza
+Password: 1234
+Login successful
+
+=========================
+TEMPLATE
+=========================
+
+if condition1:
+    if condition2:
+        # code
+    else:
+        # code
+else:
+    # code
+
+=========================
+REMEMBER
+=========================
+
+Each level needs 4 MORE spaces of indentation.
+Do not go too deep (3 levels max).
+Often  "and"  is cleaner than a nested if.

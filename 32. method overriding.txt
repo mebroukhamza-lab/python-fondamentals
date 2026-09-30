@@ -1,0 +1,122 @@
+=========================
+PYTHON METHOD OVERRIDING
+=========================
+
+Overriding = a child class writes its OWN version
+of a method that already exists in the parent.
+
+Same name, new behavior.
+
+-------------------------
+
+Example
+
+class Animal:
+
+    def speak(self):
+        print("Some sound")
+
+class Dog(Animal):
+
+    def speak(self):
+        print("Woof!")
+
+class Cat(Animal):
+
+    def speak(self):
+        print("Meow!")
+
+-------------------------
+
+Usage
+
+a = Animal()
+d = Dog()
+c = Cat()
+
+a.speak()
+d.speak()
+c.speak()
+
+Output:
+Some sound
+Woof!
+Meow!
+
+Python always uses the version that belongs
+to the REAL type of the object.
+
+-------------------------
+
+IF THE CHILD DOES NOT OVERRIDE
+
+class Bird(Animal):
+    pass
+
+Bird().speak()      # Some sound  (uses the parent's method)
+
+-------------------------
+
+OVERRIDE + KEEP THE PARENT'S PART
+
+class Puppy(Dog):
+
+    def speak(self):
+        super().speak()
+        print("(small voice)")
+
+Puppy().speak()
+
+Output:
+Woof!
+(small voice)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Shape:
+
+    def area(self):
+        return 0
+
+class Rectangle(Shape):
+
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
+
+    def area(self):
+        return self.w * self.h
+
+class Circle(Shape):
+
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return 3.14 * self.r ** 2
+
+shapes = [Rectangle(4, 5), Circle(2)]
+
+for s in shapes:
+    print(s.area())
+
+Output:
+20
+12.56
+
+=========================
+OVERLOADING vs OVERRIDING
+=========================
+
+Overloading -> same name, different parameters (NOT in Python)
+Overriding  -> child replaces the parent's method (YES in Python)
+
+=========================
+REMEMBER
+=========================
+
+Same method name as the parent
+Child version replaces the parent version
+super().method() -> still use the parent's version

@@ -1,0 +1,115 @@
+=========================
+PYTHON PRINT & F-STRINGS
+=========================
+
+An f-string lets you put variables INSIDE a text.
+Just write an  f  before the quotes and use { }.
+
+name = "Hamza"
+age = 20
+
+print(f"My name is {name} and I am {age}")
+
+Output:
+My name is Hamza and I am 20
+
+-------------------------
+
+You can even do math inside { }
+
+print(f"Next year: {age + 1}")
+
+Output:
+Next year: 21
+
+=========================
+FORMAT NUMBERS
+=========================
+
+price = 19.5
+
+print(f"{price:.2f}")       # 19.50   (2 decimals)
+print(f"{price:.0f}")       # 20      (no decimals)
+print(f"{1000000:,}")       # 1,000,000  (with commas)
+print(f"{0.25:.0%}")        # 25%     (percent)
+
+-------------------------
+
+PADDING (align text in columns)
+
+print(f"{'Name':<10}|")     # Name      |   (left)
+print(f"{'Name':>10}|")     #       Name|   (right)
+print(f"{'Name':^10}|")     #    Name   |   (center)
+
+print(f"{5:03}")            # 005     (zeros in front)
+
+=========================
+PRINT OPTIONS
+=========================
+
+print("Hello", "World")             # Hello World
+print("Hello", "World", sep="-")    # Hello-World
+print("Hello", end="")              # no new line
+print("Line 1\nLine 2")             # \n = new line
+print("Col1\tCol2")                 # \t = tab
+
+-------------------------
+
+MULTIPLY A STRING
+
+print("-" * 20)
+
+Output:
+--------------------
+
+-------------------------
+
+MULTI-LINE TEXT (triple quotes)
+
+text = """Line 1
+Line 2
+Line 3"""
+
+print(text)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+product = "Laptop"
+price = 999.5
+qty = 3
+
+total = price * qty
+
+print("-" * 30)
+print(f"{'Product':<10}{'Price':>8}{'Qty':>5}")
+print(f"{product:<10}{price:>8.2f}{qty:>5}")
+print("-" * 30)
+print(f"Total: ${total:,.2f}")
+
+Output:
+------------------------------
+Product      Price  Qty
+Laptop      999.50    3
+------------------------------
+Total: $2,998.50
+
+=========================
+MOST USED
+=========================
+
+f"{x}"          -> put a variable in text
+f"{x:.2f}"      -> 2 decimals
+f"{x:,}"        -> commas
+f"{x:<10}"      -> left align
+f"{x:>10}"      -> right align
+f"{x:^10}"      -> center
+
+=========================
+REMEMBER
+=========================
+
+f before the quotes  ->  f"..."
+Variables go inside  ->  { }
+.2f = 2 decimals

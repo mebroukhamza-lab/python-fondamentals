@@ -1,0 +1,122 @@
+=========================
+PYTHON: LIST OF OBJECTS
+=========================
+
+A list can store MANY objects.
+Very common: a list of students, products, cars...
+
+-------------------------
+
+Example
+
+class Student:
+
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+    def info(self):
+        print(self.name, "-", self.grade)
+
+students = [
+    Student("Ali", 15),
+    Student("Sara", 18),
+    Student("Hamza", 12)
+]
+
+-------------------------
+
+LOOP THROUGH THE OBJECTS
+
+for s in students:
+    s.info()
+
+Output:
+Ali - 15
+Sara - 18
+Hamza - 12
+
+-------------------------
+
+ADD AN OBJECT
+
+students.append(Student("Lina", 17))
+
+-------------------------
+
+ACCESS ONE OBJECT
+
+print(students[0].name)      # Ali
+students[1].grade = 20
+
+-------------------------
+
+SEARCH
+
+for s in students:
+    if s.name == "Sara":
+        print("Found:", s.grade)
+
+-------------------------
+
+BEST / AVERAGE
+
+best = max(students, key=lambda s: s.grade)
+print("Best:", best.name)
+
+total = sum(s.grade for s in students)
+print("Average:", total / len(students))
+
+-------------------------
+
+SORT
+
+students.sort(key=lambda s: s.grade, reverse=True)
+
+for s in students:
+    print(s.name, s.grade)
+
+-------------------------
+
+FILTER
+
+good = [s for s in students if s.grade >= 15]
+
+=========================
+COMPLETE EXAMPLE (Shop)
+=========================
+
+class Product:
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+products = [
+    Product("Laptop", 900),
+    Product("Mouse", 20),
+    Product("Keyboard", 50)
+]
+
+total = 0
+
+for p in products:
+    print(f"{p.name}: ${p.price}")
+    total += p.price
+
+print("Total:", total)
+
+Output:
+Laptop: $900
+Mouse: $20
+Keyboard: $50
+Total: 970
+
+=========================
+REMEMBER
+=========================
+
+students = [Student(...), Student(...)]
+for s in students:      -> go through all objects
+students.append(obj)    -> add one
+key=lambda s: s.grade   -> tell sort / max what to compare

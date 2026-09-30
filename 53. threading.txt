@@ -1,0 +1,145 @@
+=========================
+PYTHON THREADING
+=========================
+
+A thread = a separate path of execution.
+Threads let your program do SEVERAL things at the same time.
+
+Normal program:   task 1 -> task 2 -> task 3
+With threads:     task 1
+                  task 2      (at the same time)
+                  task 3
+
+import threading
+
+-------------------------
+
+WITHOUT THREADS (slow)
+
+import time
+
+def cook():
+    print("Cooking...")
+    time.sleep(2)
+    print("Food ready")
+
+cook()
+cook()          # waits 4 seconds in total
+
+-------------------------
+
+WITH A THREAD
+
+import threading
+import time
+
+def cook():
+    print("Cooking...")
+    time.sleep(2)
+    print("Food ready")
+
+t = threading.Thread(target=cook)
+
+t.start()                  # run cook() in a new thread
+
+print("Main program continues")
+
+Output:
+Cooking...
+Main program continues
+Food ready
+
+-------------------------
+
+WITH ARGUMENTS
+
+def greet(name, times):
+    for i in range(times):
+        print("Hello", name)
+
+t = threading.Thread(target=greet, args=("Hamza", 3))
+t.start()
+
+(args must be a tuple. With ONE argument write: args=("Hamza",))
+
+-------------------------
+
+join()  -> WAIT for the thread to finish
+
+t = threading.Thread(target=cook)
+
+t.start()
+t.join()                   # main program waits here
+
+print("Everything is done")
+
+Output:
+Cooking...
+Food ready
+Everything is done
+
+-------------------------
+
+THREAD AS A CLASS
+
+class Worker(threading.Thread):
+
+    def run(self):
+        print("Working in", self.name)
+
+w = Worker()
+w.start()
+
+-------------------------
+
+DAEMON THREAD (dies when the program ends)
+
+t = threading.Thread(target=cook, daemon=True)
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+import threading
+import time
+
+def download(file):
+    print("Downloading", file)
+    time.sleep(2)
+    print(file, "finished")
+
+t = threading.Thread(target=download, args=("video.mp4",))
+
+t.start()
+
+print("You can do other things while it downloads...")
+
+t.join()
+
+print("All done")
+
+Output:
+Downloading video.mp4
+You can do other things while it downloads...
+video.mp4 finished
+All done
+
+=========================
+TEMPLATE
+=========================
+
+import threading
+
+t = threading.Thread(target=function, args=(values,))
+t.start()
+t.join()
+
+=========================
+REMEMBER
+=========================
+
+Thread(target=function)  -> create
+.start()   -> run it (NOT function(), just the name!)
+.join()    -> wait until it ends
+args=(...) -> a tuple
+Good for waiting tasks: downloads, files, internet

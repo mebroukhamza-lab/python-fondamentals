@@ -1,0 +1,109 @@
+=========================
+PYTHON WHILE LOOP
+=========================
+
+A while loop REPEATS code as long as
+the condition is True.
+
+Syntax:
+
+while condition:
+    # code
+
+-------------------------
+
+Example: count from 1 to 5
+
+count = 1
+
+while count <= 5:
+    print(count)
+    count += 1
+
+Output:
+1
+2
+3
+4
+5
+
+-------------------------
+
+HOW IT WORKS
+
+1) Is count <= 5 ?  YES -> run the code
+2) count becomes 2, then check again
+3) ... repeat ...
+4) count becomes 6 -> condition is False -> STOP
+
+-------------------------
+
+WARNING: INFINITE LOOP
+
+If the condition never becomes False, the loop never stops.
+
+x = 1
+while x <= 5:
+    print(x)        # forgot x += 1  -> runs forever!
+
+(Press CTRL + C to stop a program that is stuck.)
+
+-------------------------
+
+LOOP UNTIL THE USER IS CORRECT
+
+password = ""
+
+while password != "1234":
+    password = input("Password: ")
+
+print("Access granted")
+
+-------------------------
+
+while True + break
+
+while True:
+    text = input("Type 'exit' to stop: ")
+
+    if text == "exit":
+        break
+
+    print("You typed:", text)
+
+=========================
+COMPLETE EXAMPLE (Sum until 0)
+=========================
+
+total = 0
+
+number = int(input("Number (0 to stop): "))
+
+while number != 0:
+    total += number
+    number = int(input("Number (0 to stop): "))
+
+print("Total:", total)
+
+Output (example):
+Number (0 to stop): 5
+Number (0 to stop): 10
+Number (0 to stop): 0
+Total: 15
+
+=========================
+TEMPLATE
+=========================
+
+while condition:
+    # code
+    # change something so the loop can end
+
+=========================
+REMEMBER
+=========================
+
+Colon  :  after the condition
+Indent the code inside
+Always change a variable inside the loop
+break  -> stop the loop now

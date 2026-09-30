@@ -1,0 +1,106 @@
+=========================
+PYTHON MULTIPLE CONSTRUCTORS
+=========================
+
+In Java you can write several constructors (overloading).
+Python allows only ONE __init__.
+
+But we have two easy solutions.
+
+=========================
+SOLUTION 1: DEFAULT VALUES
+=========================
+
+class Person:
+
+    def __init__(self, name="Unknown", age=0):
+        self.name = name
+        self.age = age
+
+p1 = Person()                  # Unknown, 0
+p2 = Person("Ali")             # Ali, 0
+p3 = Person("Sara", 25)        # Sara, 25
+p4 = Person(age=30)            # Unknown, 30
+
+print(p1.name, p1.age)
+print(p3.name, p3.age)
+
+Output:
+Unknown 0
+Sara 25
+
+=========================
+SOLUTION 2: @classmethod (other ways to build)
+=========================
+
+A class method creates the object in a DIFFERENT way.
+It gets  cls  (the class) instead of self.
+
+class Person:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def from_text(cls, text):
+        name, age = text.split("-")
+        return cls(name, int(age))
+
+    @classmethod
+    def baby(cls, name):
+        return cls(name, 0)
+
+p1 = Person("Hamza", 20)
+p2 = Person.from_text("Sara-25")
+p3 = Person.baby("Lina")
+
+print(p2.name, p2.age)
+print(p3.name, p3.age)
+
+Output:
+Sara 25
+Lina 0
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+class Rectangle:
+
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    @classmethod
+    def square(cls, side):
+        return cls(side, side)
+
+    def area(self):
+        return self.width * self.height
+
+r1 = Rectangle(4, 5)
+r2 = Rectangle.square(3)
+
+print(r1.area())
+print(r2.area())
+
+Output:
+20
+9
+
+=========================
+WHEN TO USE WHAT
+=========================
+
+Default values  -> some values are optional
+@classmethod    -> different kinds of input (text, file, another format)
+
+=========================
+REMEMBER
+=========================
+
+Only ONE __init__ per class
+Use default values:  def __init__(self, a=0)
+Use @classmethod for alternative constructors
+cls = the class itself

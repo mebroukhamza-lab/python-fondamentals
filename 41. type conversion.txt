@@ -1,0 +1,140 @@
+=========================
+PYTHON TYPE CONVERSION
+=========================
+
+Java has "wrapper classes" (Integer, Double...).
+In Python everything is already an object.
+
+What you need is TYPE CONVERSION:
+changing a value from one type to another.
+
+=========================
+MAIN CONVERSION FUNCTIONS
+=========================
+
+int()     -> whole number
+float()   -> decimal number
+str()     -> text
+bool()    -> True / False
+list()    -> list
+
+-------------------------
+
+TEXT -> NUMBER
+
+x = int("25")
+y = float("3.14")
+
+print(x + 1)       # 26
+print(y + 1)       # 4.14
+
+-------------------------
+
+NUMBER -> TEXT
+
+age = 20
+text = "Age: " + str(age)
+
+print(text)        # Age: 20
+
+-------------------------
+
+FLOAT -> INT  (cuts the decimals, no rounding!)
+
+print(int(9.99))     # 9
+print(round(9.99))   # 10
+
+-------------------------
+
+INT -> FLOAT
+
+print(float(5))      # 5.0
+
+-------------------------
+
+bool()
+
+print(bool(0))        # False
+print(bool(1))        # True
+print(bool(""))       # False
+print(bool("Hi"))     # True
+print(bool([]))       # False
+print(bool([1, 2]))   # True
+
+-------------------------
+
+TEXT -> LIST
+
+print(list("abc"))          # ['a', 'b', 'c']
+print("a-b-c".split("-"))   # ['a', 'b', 'c']
+
+-------------------------
+
+OTHER SYSTEMS
+
+print(bin(10))     # 0b1010   (binary)
+print(hex(255))    # 0xff     (hexadecimal)
+print(int("1010", 2))   # 10  (binary text -> number)
+
+-------------------------
+
+ERRORS
+
+int("hello")       # ValueError: not a number
+int("3.5")         # ValueError: use float() first
+
+Safe way:
+
+text = "abc"
+
+if text.isdigit():
+    print(int(text))
+else:
+    print("Not a number")
+
+Or with try / except:
+
+try:
+    number = int(text)
+except ValueError:
+    print("Not a number")
+
+-------------------------
+
+CHECK THE TYPE
+
+x = 5
+
+print(type(x))                # <class 'int'>
+print(isinstance(x, int))     # True
+print(isinstance(x, str))     # False
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+age_text = "20"
+price_text = "19.99"
+
+age = int(age_text)
+price = float(price_text)
+
+total = age * price
+
+print("Total:", round(total, 2))
+print("Type:", type(total))
+
+Output:
+Total: 399.8
+Type: <class 'float'>
+
+=========================
+REMEMBER
+=========================
+
+int("5")       -> 5
+float("2.5")   -> 2.5
+str(10)        -> "10"
+int(9.9)       -> 9 (no rounding)
+Empty things (0, "", [], None) are False
+Wrong text  ->  ValueError

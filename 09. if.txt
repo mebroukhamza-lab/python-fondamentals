@@ -1,0 +1,143 @@
+=========================
+PYTHON IF STATEMENTS
+=========================
+
+An if statement lets your program TAKE DECISIONS.
+
+IMPORTANT in Python:
+- No { } braces
+- After the condition you write a colon  :
+- The code inside must be INDENTED (4 spaces)
+
+Basic if
+
+age = 20
+
+if age >= 18:
+    print("Adult")
+
+-------------------------
+
+if - else
+
+age = 16
+
+if age >= 18:
+    print("Adult")
+else:
+    print("Minor")
+
+Output:
+Minor
+
+-------------------------
+
+if - elif - else   (elif = "else if")
+
+grade = 85
+
+if grade >= 90:
+    print("A")
+elif grade >= 80:
+    print("B")
+elif grade >= 70:
+    print("C")
+else:
+    print("Fail")
+
+Output:
+B
+
+(Python checks from top to bottom and stops at the first True.)
+
+=========================
+COMPARISON OPERATORS
+=========================
+
+==   Equal to
+!=   Not equal to
+>    Greater than
+<    Less than
+>=   Greater or equal
+<=   Less or equal
+
+=========================
+LOGICAL OPERATORS
+=========================
+
+and   -> both True
+or    -> at least one True
+not   -> opposite
+
+age = 20
+student = True
+
+if age >= 18 and student:
+    print("Adult student")
+
+if age < 18 or student:
+    print("Condition true")
+
+if not student:
+    print("Not a student")
+
+=========================
+EMPTY OR NOT? (very Pythonic)
+=========================
+
+name = ""
+
+if name:
+    print("Has a name")
+else:
+    print("Empty")
+
+Output:
+Empty
+
+These are treated as False:  0   0.0   ""   []   None   False
+Everything else is True.
+
+=========================
+USER INPUT EXAMPLE
+=========================
+
+age = int(input("Enter age: "))
+
+if age >= 18:
+    print("Access granted")
+else:
+    print("Access denied")
+
+=========================
+SHORT TEMPLATE
+=========================
+
+if condition:
+    # code
+elif condition:
+    # code
+else:
+    # code
+
+=========================
+MOST USED
+=========================
+
+if x > 0:
+if x < 0:
+if x == 0:
+if x != 0:
+if age >= 18:
+if a > b:
+if a >= b and b > 0:
+if "a" in text:
+if not name:
+
+=========================
+REMEMBER
+=========================
+
+Colon  :  after if / elif / else
+Indent the code inside (4 spaces)
+Use ==  to compare, not =

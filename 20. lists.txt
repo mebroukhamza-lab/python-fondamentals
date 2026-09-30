@@ -1,0 +1,140 @@
+=========================
+PYTHON LISTS
+=========================
+
+A list stores MANY values in ONE variable.
+(It is the Python version of arrays.)
+
+Python lists:
+- can grow and shrink
+- can contain different types
+- use [ ]
+
+-------------------------
+
+CREATE
+
+numbers = [10, 20, 30, 40]
+names = ["Ali", "Sara", "Hamza"]
+mixed = ["Hamza", 20, True]
+empty = []
+
+-------------------------
+
+INDEX (starts at 0)
+
+names = ["Ali", "Sara", "Hamza"]
+
+print(names[0])      # Ali
+print(names[1])      # Sara
+print(names[-1])     # Hamza  (last)
+
+-------------------------
+
+CHANGE A VALUE
+
+names[1] = "Lina"
+print(names)         # ['Ali', 'Lina', 'Hamza']
+
+-------------------------
+
+LENGTH
+
+print(len(names))    # 3
+
+-------------------------
+
+ADD
+
+names.append("Omar")         # add at the end
+names.insert(0, "Zack")      # add at position 0
+names.extend(["A", "B"])     # add many
+
+-------------------------
+
+REMOVE
+
+names.remove("Ali")          # remove by value
+last = names.pop()           # remove and return the last
+names.pop(0)                 # remove by position
+del names[0]                 # delete by position
+names.clear()                # remove everything
+
+-------------------------
+
+USEFUL
+
+nums = [5, 2, 9, 1]
+
+print(len(nums))     # 4
+print(sum(nums))     # 17
+print(max(nums))     # 9
+print(min(nums))     # 1
+
+nums.sort()          # [1, 2, 5, 9]
+nums.reverse()       # [9, 5, 2, 1]
+nums.sort(reverse=True)
+
+-------------------------
+
+SLICING [start:end]
+
+nums = [10, 20, 30, 40, 50]
+
+print(nums[1:4])     # [20, 30, 40]
+print(nums[:2])      # [10, 20]
+print(nums[2:])      # [30, 40, 50]
+print(nums[::-1])    # [50, 40, 30, 20, 10]
+
+-------------------------
+
+LOOP
+
+for n in nums:
+    print(n)
+
+for i in range(len(nums)):
+    print(i, nums[i])
+
+=========================
+COMPLETE EXAMPLE
+=========================
+
+scores = [80, 95, 70, 88]
+
+scores.append(100)
+
+total = sum(scores)
+average = total / len(scores)
+
+print("Scores:", scores)
+print("Total:", total)
+print("Average:", average)
+print("Best:", max(scores))
+
+Output:
+Scores: [80, 95, 70, 88, 100]
+Total: 433
+Average: 86.6
+Best: 100
+
+=========================
+MOST USED
+=========================
+
+append(x)     -> add at the end
+insert(i, x)  -> add at position i
+remove(x)     -> remove value x
+pop()         -> remove the last
+sort()        -> sort
+reverse()     -> reverse
+len(list)     -> size
+
+=========================
+REMEMBER
+=========================
+
+Index starts at 0
+Last item is list[-1]
+Slicing end is NOT included
+Lists can be changed (mutable)

@@ -1,0 +1,126 @@
+=========================
+PYTHON EXCEPTION HANDLING
+=========================
+
+An exception is an ERROR that happens while the program runs.
+Without handling it, the program CRASHES.
+
+number = int("hello")      # ValueError -> crash!
+print(10 / 0)              # ZeroDivisionError -> crash!
+
+With try / except we catch the error and keep the program alive.
+
+-------------------------
+
+Basic try / except
+
+try:
+    number = int(input("Enter a number: "))
+    print("You typed:", number)
+except ValueError:
+    print("That is not a number!")
+
+-------------------------
+
+SEVERAL ERRORS
+
+try:
+    a = int(input("A: "))
+    b = int(input("B: "))
+    print(a / b)
+except ValueError:
+    print("Please type numbers")
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+-------------------------
+
+CATCH ANY ERROR (use carefully)
+
+try:
+    risky_code()
+except Exception as e:
+    print("Error:", e)
+
+-------------------------
+
+else and finally
+
+try:
+    x = int(input("Number: "))
+except ValueError:
+    print("Invalid")
+else:
+    print("Good! No error.")        # runs only if NO error
+finally:
+    print("Done.")                  # ALWAYS runs
+
+-------------------------
+
+COMMON ERRORS
+
+ValueError          -> wrong value        int("abc")
+ZeroDivisionError   -> divide by zero     10 / 0
+TypeError           -> wrong type         "5" + 5
+IndexError          -> bad list index     [1, 2][5]
+KeyError            -> missing dict key   {"a": 1}["b"]
+FileNotFoundError   -> file not found     open("nope.txt")
+
+=========================
+CREATE YOUR OWN ERROR  (raise)
+=========================
+
+def set_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    return age
+
+try:
+    set_age(-5)
+except ValueError as e:
+    print("Error:", e)
+
+Output:
+Error: Age cannot be negative
+
+=========================
+COMPLETE EXAMPLE (Ask until correct)
+=========================
+
+while True:
+    try:
+        age = int(input("Enter your age: "))
+        break
+    except ValueError:
+        print("Invalid! Try again.")
+
+print("Your age is", age)
+
+Output (example):
+Enter your age: abc
+Invalid! Try again.
+Enter your age: 20
+Your age is 20
+
+=========================
+TEMPLATE
+=========================
+
+try:
+    # risky code
+except ErrorType:
+    # what to do if it fails
+else:
+    # if no error (optional)
+finally:
+    # always runs (optional)
+
+=========================
+REMEMBER
+=========================
+
+try      -> code that can fail
+except   -> what to do when it fails
+finally  -> always runs
+raise    -> create an error yourself
+Catch a SPECIFIC error when possible

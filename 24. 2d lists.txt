@@ -1,0 +1,119 @@
+=========================
+PYTHON 2D LISTS
+=========================
+
+A 2D list = a list of lists.
+Think of a TABLE with rows and columns.
+
+-------------------------
+
+CREATE
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+        col0 col1 col2
+row 0:    1    2    3
+row 1:    4    5    6
+row 2:    7    8    9
+
+-------------------------
+
+ACCESS  matrix[row][column]
+
+print(matrix[0][0])     # 1
+print(matrix[1][2])     # 6
+print(matrix[2][1])     # 8
+
+-------------------------
+
+CHANGE
+
+matrix[0][0] = 100
+
+-------------------------
+
+SIZE
+
+print(len(matrix))       # 3  (rows)
+print(len(matrix[0]))    # 3  (columns)
+
+-------------------------
+
+LOOP THROUGH EVERYTHING
+
+for row in matrix:
+    for value in row:
+        print(value, end=" ")
+    print()
+
+Output:
+1 2 3
+4 5 6
+7 8 9
+
+-------------------------
+
+LOOP WITH INDEXES
+
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        print(f"[{i}][{j}] = {matrix[i][j]}")
+
+-------------------------
+
+CREATE AN EMPTY GRID
+
+rows = 3
+cols = 4
+
+grid = [[0 for _ in range(cols)] for _ in range(rows)]
+
+print(grid)
+
+Output:
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+
+(Do NOT write [[0] * 4] * 3  -> the rows would be the SAME list!)
+
+=========================
+COMPLETE EXAMPLE (Sum of each row)
+=========================
+
+grades = [
+    [12, 15, 18],
+    [10, 14, 16],
+    [20, 19, 17]
+]
+
+for i in range(len(grades)):
+    total = sum(grades[i])
+    print(f"Student {i + 1}: total = {total}")
+
+Output:
+Student 1: total = 45
+Student 2: total = 40
+Student 3: total = 56
+
+=========================
+TEMPLATE
+=========================
+
+table = [
+    [value, value],
+    [value, value]
+]
+
+table[row][column]
+
+=========================
+REMEMBER
+=========================
+
+matrix[row][column]
+len(matrix)     -> number of rows
+len(matrix[0])  -> number of columns
+Use nested loops to go through all values

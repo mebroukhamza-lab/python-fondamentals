@@ -1,0 +1,110 @@
+=========================
+PYTHON NESTED LOOPS
+=========================
+
+A nested loop = a loop INSIDE another loop.
+
+The inner loop runs COMPLETELY
+for every single step of the outer loop.
+
+-------------------------
+
+Example
+
+for i in range(1, 4):
+    for j in range(1, 3):
+        print(i, j)
+
+Output:
+1 1
+1 2
+2 1
+2 2
+3 1
+3 2
+
+-------------------------
+
+HOW TO READ IT
+
+i = 1  ->  j = 1, 2
+i = 2  ->  j = 1, 2
+i = 3  ->  j = 1, 2
+
+(3 rounds x 2 rounds = 6 prints)
+
+=========================
+PRINT ON THE SAME LINE
+=========================
+
+Use end=""  so print() does not go to a new line.
+
+for i in range(5):
+    print("*", end="")
+
+print()      # go to a new line
+
+Output:
+*****
+
+=========================
+RECTANGLE OF STARS
+=========================
+
+for row in range(3):
+    for col in range(5):
+        print("*", end="")
+    print()
+
+Output:
+*****
+*****
+*****
+
+=========================
+TRIANGLE
+=========================
+
+for row in range(1, 6):
+    for col in range(row):
+        print("*", end="")
+    print()
+
+Output:
+*
+**
+***
+****
+*****
+
+=========================
+COMPLETE EXAMPLE (Multiplication table)
+=========================
+
+for i in range(1, 4):
+    for j in range(1, 6):
+        print(f"{i * j:3}", end="")
+    print()
+
+Output:
+  1  2  3  4  5
+  2  4  6  8 10
+  3  6  9 12 15
+
+=========================
+TEMPLATE
+=========================
+
+for i in range(...):
+    for j in range(...):
+        # code
+    # (new line here if needed)
+
+=========================
+REMEMBER
+=========================
+
+Outer loop = rows
+Inner loop = columns
+print(end="")  -> stay on the same line
+print()        -> go to the next line

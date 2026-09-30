@@ -1,0 +1,141 @@
+=========================
+PYTHON READ FILES
+=========================
+
+open("file.txt", "r")     ("r" = read, it is the default)
+
+Imagine names.txt contains:
+
+Hamza
+Ali
+Sara
+
+-------------------------
+
+READ EVERYTHING
+
+with open("names.txt", "r") as file:
+    content = file.read()
+
+print(content)
+
+Output:
+Hamza
+Ali
+Sara
+
+-------------------------
+
+READ LINE BY LINE (best for big files)
+
+with open("names.txt") as file:
+    for line in file:
+        print(line.strip())
+
+(strip() removes the invisible \n at the end of each line.)
+
+-------------------------
+
+READ ALL LINES INTO A LIST
+
+with open("names.txt") as file:
+    lines = file.readlines()
+
+print(lines)
+
+Output:
+['Hamza\n', 'Ali\n', 'Sara\n']
+
+Cleaner:
+
+with open("names.txt") as file:
+    names = file.read().splitlines()
+
+print(names)
+
+Output:
+['Hamza', 'Ali', 'Sara']
+
+-------------------------
+
+READ ONE LINE
+
+with open("names.txt") as file:
+    first = file.readline()
+
+-------------------------
+
+FILE NOT FOUND
+
+try:
+    with open("missing.txt") as file:
+        print(file.read())
+except FileNotFoundError:
+    print("File does not exist")
+
+-------------------------
+
+CHECK FIRST
+
+import os
+
+if os.path.exists("names.txt"):
+    print("The file exists")
+
+-------------------------
+
+SPECIAL CHARACTERS
+
+with open("names.txt", encoding="utf-8") as file:
+    text = file.read()
+
+=========================
+COMPLETE EXAMPLE (Count lines and words)
+=========================
+
+lines = 0
+words = 0
+
+with open("names.txt") as file:
+    for line in file:
+        lines += 1
+        words += len(line.split())
+
+print("Lines:", lines)
+print("Words:", words)
+
+Output:
+Lines: 3
+Words: 3
+
+=========================
+COMPLETE EXAMPLE 2 (Write, then read)
+=========================
+
+with open("test.txt", "w") as f:
+    f.write("Python is fun\n")
+
+with open("test.txt") as f:
+    print(f.read())
+
+Output:
+Python is fun
+
+=========================
+TEMPLATE
+=========================
+
+with open("filename.txt", "r") as file:
+    for line in file:
+        print(line.strip())
+
+=========================
+REMEMBER
+=========================
+
+read()        -> all text in one string
+readline()    -> one line
+readlines()   -> list of lines
+for line in file  -> best way
+strip()       -> removes the \n
+FileNotFoundError -> use try / except
