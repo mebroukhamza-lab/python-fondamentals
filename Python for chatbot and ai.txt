@@ -1,0 +1,409 @@
+=========================
+PYTHON FOR CHATBOTS AND AI - FUNDAMENTALS
+=========================
+
+Your python folder (01 to 55) already covers the CORE of Python.
+This file has two parts:
+
+PART A: what from your folder matters most for AI
+PART B: what is MISSING from your folder and you must learn next
+
+=========================
+PART A: FROM YOUR FOLDER (what you need for AI)
+=========================
+
+MUST KNOW WELL:
+
+01 variables, 05 print and f-strings   -> building prompts and messages
+08 string methods                      -> cleaning user text (lower, strip, split)
+09 if, 12 match case                   -> chatbot decisions and commands
+13 while loop                          -> the chatbot conversation loop
+14 for loop, 55 list comprehensions    -> processing lots of data
+17 functions, 18 default arguments     -> everything is a function
+20 lists, 22 search a list             -> chat history, documents
+51 dictionaries                        -> messages, JSON, settings (VERY important)
+25-35 classes, inheritance             -> organizing a bot into objects
+44 write files, 45 read files          -> saving chats, loading data
+47 lambda functions                    -> sorting and filtering data
+50 type hints                          -> readable, safe code
+53 threading, 54 multithreading        -> doing several things at once
+
+GOOD TO KNOW:
+
+06 random, 46 dates and times, 41 type conversion, 42 tuples and sets,
+24 2d lists (a table = a list of lists), 52 enums
+
+=========================
+PART B: WHAT IS MISSING (learn these)
+=========================
+
+-------------------------
+1. ERROR HANDLING (try / except)
+-------------------------
+
+Programs crash. try/except lets you handle it. AI apps need this
+because internet and APIs fail often.
+
+try:
+    number = int(input("Number: "))
+except ValueError:
+    print("That is not a number")
+else:
+    print("You typed", number)
+finally:
+    print("Always runs")
+
+Raise your own error:
+
+if age < 0:
+    raise ValueError("Age cannot be negative")
+
+-------------------------
+2. MODULES AND IMPORTS
+-------------------------
+
+import math
+from datetime import datetime
+import os as operating_system
+
+Your own file:  helper.py  ->  import helper
+
+Run code only when the file is started directly:
+
+if __name__ == "__main__":
+    main()
+
+-------------------------
+3. pip AND VIRTUAL ENVIRONMENTS
+-------------------------
+
+pip installs libraries. A virtual environment keeps each
+project's libraries separate.
+
+python -m venv venv
+
+Activate:
+Windows:      venv\Scripts\activate
+Mac / Linux:  source venv/bin/activate
+
+Install:
+pip install requests
+pip install -r requirements.txt
+
+Save what you installed:
+pip freeze > requirements.txt
+
+-------------------------
+4. JSON (how AI and APIs talk)
+-------------------------
+
+JSON looks exactly like a Python dictionary.
+
+import json
+
+data = {"name": "Hamza", "skills": ["python", "ai"]}
+
+text = json.dumps(data, indent=2)     # dict -> string
+back = json.loads(text)               # string -> dict
+
+Save to file:
+with open("data.json", "w") as f:
+    json.dump(data, f, indent=2)
+
+Load from file:
+with open("data.json") as f:
+    data = json.load(f)
+
+-------------------------
+5. THE with STATEMENT
+-------------------------
+
+Opens a file (or connection) and closes it automatically.
+
+with open("notes.txt", "r") as f:
+    content = f.read()
+
+-------------------------
+6. ENVIRONMENT VARIABLES AND API KEYS
+-------------------------
+
+NEVER write your API key inside your code.
+NEVER upload it to GitHub.
+
+Put it in a file called  .env :
+
+ANTHROPIC_API_KEY=your-key-here
+
+Read it:
+
+pip install python-dotenv
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+key = os.getenv("ANTHROPIC_API_KEY")
+
+Add .env to your .gitignore file.
+
+-------------------------
+7. HTTP REQUESTS (talking to the internet)
+-------------------------
+
+pip install requests
+
+import requests
+
+response = requests.get("https://api.example.com/data")
+
+print(response.status_code)     # 200 = OK
+print(response.json())          # the data as a dict
+
+POST (send data):
+
+response = requests.post(url, json={"question": "Hi"}, timeout=30)
+response.raise_for_status()     # error if the request failed
+
+Status codes:
+200 OK | 400 bad request | 401 wrong key | 404 not found
+429 too many requests | 500 server error
+
+-------------------------
+8. ASYNC (waiting without freezing)
+-------------------------
+
+Useful for bots that handle many users at once (Discord, Telegram).
+
+import asyncio
+
+async def fetch():
+    await asyncio.sleep(1)
+    return "done"
+
+async def main():
+    result = await fetch()
+    print(result)
+
+asyncio.run(main())
+
+-------------------------
+9. DATACLASSES AND GENERATORS
+-------------------------
+
+from dataclasses import dataclass
+
+@dataclass
+class Message:
+    role: str
+    content: str
+
+m = Message("user", "Hello")
+
+Generator (produces values one at a time, used for streaming text):
+
+def count(n):
+    for i in range(n):
+        yield i
+
+-------------------------
+10. REGEX (find patterns in text)
+-------------------------
+
+import re
+
+re.findall(r"\d+", "I have 3 cats and 12 dogs")   # ['3', '12']
+re.search(r"\w+@\w+\.com", text)                  # find an email
+
+=========================
+DATA AND AI LIBRARIES
+=========================
+
+NUMPY   (fast math on arrays)          pip install numpy
+
+import numpy as np
+a = np.array([1, 2, 3])
+print(a * 2)          # [2 4 6]
+print(a.mean())       # 2.0
+
+PANDAS  (tables of data, like Excel)   pip install pandas
+
+import pandas as pd
+df = pd.read_csv("data.csv")
+print(df.head())
+print(df["age"].mean())
+df[df["age"] > 18]
+
+MATPLOTLIB (charts)                    pip install matplotlib
+
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3], [4, 5, 6])
+plt.show()
+
+SCIKIT-LEARN (classic machine learning)  pip install scikit-learn
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = LogisticRegression()
+model.fit(X_train, y_train)
+print(model.score(X_test, y_test))
+
+PYTORCH (deep learning / neural networks)   pip install torch
+TRANSFORMERS (ready-made models)            pip install transformers
+
+from transformers import pipeline
+classifier = pipeline("sentiment-analysis")
+print(classifier("I love this!"))
+
+=========================
+AI CONCEPTS TO UNDERSTAND
+=========================
+
+Machine learning  -> computer learns patterns from data
+Training          -> showing the model examples
+Model             -> the result of training
+Inference         -> using the model to answer
+LLM               -> Large Language Model (predicts the next words)
+Token             -> a piece of text (about 3/4 of a word)
+Prompt            -> the text you send to the model
+System prompt     -> instructions that set the model's behavior
+Context window    -> how much text the model can see at once
+Temperature       -> randomness (0 = focused, 1 = creative)
+Embedding         -> text turned into numbers that capture meaning
+RAG               -> search your documents, give the results to the LLM
+Fine-tuning       -> training an existing model more on your data
+Hallucination     -> the model confidently says something false
+
+=========================
+BUILD A CHATBOT WITH A REAL LLM (Claude API)
+=========================
+
+pip install anthropic python-dotenv
+
+Simple question:
+
+import anthropic
+from dotenv import load_dotenv
+
+load_dotenv()
+client = anthropic.Anthropic()      # reads ANTHROPIC_API_KEY
+
+reply = client.messages.create(
+    model="claude-sonnet-5-5",
+    max_tokens=1000,
+    messages=[{"role": "user", "content": "What is Python?"}],
+)
+
+print(reply.content[0].text)
+
+-------------------------
+
+Chatbot that REMEMBERS the conversation:
+
+import anthropic
+from dotenv import load_dotenv
+
+load_dotenv()
+client = anthropic.Anthropic()
+
+history = []
+
+while True:
+    user_text = input("You: ").strip()
+
+    if user_text.lower() in ("quit", "exit"):
+        break
+
+    history.append({"role": "user", "content": user_text})
+
+    try:
+        reply = client.messages.create(
+            model="claude-sonnet-5-5",
+            max_tokens=1000,
+            system="You are a friendly assistant. Keep answers short.",
+            messages=history,
+        )
+    except anthropic.APIError as e:
+        print("Error:", e)
+        history.pop()
+        continue
+
+    answer = reply.content[0].text
+    history.append({"role": "assistant", "content": answer})
+    print("Bot:", answer)
+
+WHY it remembers: the WHOLE history list is sent every time.
+The model itself has no memory between calls.
+
+Check current model names and options in the official docs:
+https://docs.claude.com
+
+=========================
+SIMPLE CHATBOT WITHOUT AI (rules)
+=========================
+
+Good for learning, uses only your folder's knowledge.
+
+answers = {
+    "hello": "Hi there!",
+    "how are you": "I'm fine, thanks!",
+    "bye": "Goodbye!",
+}
+
+while True:
+    text = input("You: ").lower().strip()
+
+    if text == "bye":
+        print("Bot:", answers["bye"])
+        break
+
+    print("Bot:", answers.get(text, "I don't understand"))
+
+=========================
+NEXT STEPS: LIBRARIES FOR REAL CHATBOTS
+=========================
+
+Web interface:      streamlit, gradio, flask, fastapi
+Telegram bot:       python-telegram-bot
+Discord bot:        discord.py
+Vector search/RAG:  chromadb, faiss-cpu, sentence-transformers
+Read PDFs:          pypdf
+Web scraping:       beautifulsoup4
+Databases:          sqlite3 (built in), sqlalchemy
+
+Example: chatbot with a web page in 10 lines (Streamlit)
+
+import streamlit as st
+st.title("My Chatbot")
+text = st.chat_input("Say something")
+if text:
+    st.chat_message("user").write(text)
+    st.chat_message("assistant").write("You said: " + text)
+
+Run:  streamlit run app.py
+
+=========================
+LEARNING ORDER (recommended)
+=========================
+
+1. Finish your python folder (you have it)
+2. try/except, modules, json, with, venv, pip
+3. requests + API keys (.env)
+4. Build the rule-based chatbot, then the Claude chatbot
+5. numpy, pandas, matplotlib
+6. scikit-learn (first real machine learning)
+7. Streamlit or Telegram bot to show your chatbot to people
+8. Embeddings + RAG (chatbot that knows YOUR documents)
+9. PyTorch and transformers (deep learning)
+10. Math basics: averages, probability, vectors, matrices
+
+=========================
+REMEMBER
+=========================
+
+Python basics are 80% of the work. Do not skip them.
+Never put API keys in code. Use .env.
+Always wrap API calls in try/except.
+A chatbot = input loop + history list + a model call + print.
+Small projects beat many tutorials. Build something every week.
